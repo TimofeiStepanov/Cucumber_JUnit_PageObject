@@ -1,29 +1,37 @@
 package stepDefinitions;
 
-import org.junit.After;
 import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-
-import java.util.concurrent.TimeUnit;
-
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBase {
     public WebDriver driver;
-
-    @Before
-    public static WebDriver initialize() {
-        System.out.println("Initialize  Web Driver");
-        ChromeOptions ops = new ChromeOptions();
-        System.setProperty("webdriver.chrome.driver", ".\\src\\main\\resources\\chromedriverNew.exe");
-        WebDriver driver = new ChromeDriver(ops);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        return driver;
+    @BeforeAll
+    static void setupDriverClass() {
+        //save driver to path: win "C:\Users\%USER_NAME%\.cache\selenium\chromedriver\"
+        //                     unix "~/.cache/selenium/chromedriver"
+        WebDriverManager.chromedriver().setup();
+        //TO DO:save driver to custom path.
+        //Now need :
+        // 1) Open : External Libraries --> Maven:io.github.bonigarcia:webdrivermanager:5.2.2 -->
+        //           --> webdrivermanager.properties
+        // 2) Change : wdm.cachePath=~/.cache/selenium/ to your custom path
 
     }
+    @Before
+    public static WebDriver initializeDriver() {
 
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        return driver;
+    }
+    @AfterEach
+    void teardown() {
+        driver.quit();
+    }
 
 
 
