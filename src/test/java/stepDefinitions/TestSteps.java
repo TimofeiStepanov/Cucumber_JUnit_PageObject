@@ -7,14 +7,14 @@ import org.example.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 
 
-public class Steps {
+public class TestSteps {
     WebDriver driver = null;
     HomePage homePage;
     PageObjectManager pageObjectManager;
 
     TestBase testBase = new TestBase();
 
-    @Given("I am on HomePage'")
+    @Given("I am on HomePage")
     public void i_am_on_home_page() {
 
         driver = testBase.initializeDriver();

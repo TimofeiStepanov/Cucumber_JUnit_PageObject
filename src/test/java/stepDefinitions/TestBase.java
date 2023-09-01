@@ -1,11 +1,13 @@
 package stepDefinitions;
 
+import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 public class TestBase {
     public WebDriver driver;
@@ -21,7 +23,8 @@ public class TestBase {
             // 2) Change : wdm.cachePath=~/.cache/selenium/ to your custom path
 
     }
-    @Before
+    @NotNull
+    @BeforeAll
     public static WebDriver initializeDriver() {
 
         WebDriver driver = new ChromeDriver();
