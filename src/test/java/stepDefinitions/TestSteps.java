@@ -17,7 +17,7 @@ public class TestSteps {
     @Given("I am on HomePage")
     public void i_am_on_home_page() {
 
-        driver = testBase.initializeDriver();
+        driver = TestBase.initializeDriver();
         pageObjectManager = new PageObjectManager(driver);
         homePage = pageObjectManager.getHomePage();
         homePage.goToHomePage();

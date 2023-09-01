@@ -21,6 +21,7 @@ public class HomePage {
     WebElement login;
 
 
+
     //Methods
 
     public void goToHomePage() {
