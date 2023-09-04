@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.GeckoDriverService;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -31,7 +31,10 @@ public class TestBase {
     @BeforeAll
     public static WebDriver initializeDriver() throws InterruptedException {
 
-        WebDriver driver = new ChromeDriver();
+//        WebDriver driver = new ChromeDriver();
+        WebDriver driver = new FirefoxDriver();
+//        WebDriver driver = new EdgeDriver();
+//        WebDriver driver = new SafariDriver();
         driver.manage().window().maximize();
                 return driver;
     }
