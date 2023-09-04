@@ -1,38 +1,42 @@
 package stepDefinitions;
 
+import io.cucumber.java.After;
+import io.cucumber.java.AfterAll;
+import io.cucumber.java.BeforeAll;
 import org.jetbrains.annotations.NotNull;
-import org.junit.Before;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.GeckoDriverService;
+import org.openqa.selenium.safari.SafariDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 public class TestBase {
-    public WebDriver driver;
+
+    public static WebDriver driver;
+
     @BeforeAll
-    static void setupDriverClass() {
+    public static void setupDriverClass() {
             //save driver to path: win "C:\Users\%USER_NAME%\.cache\selenium\chromedriver\"
             //                     unix "~/.cache/selenium/chromedriver"
         WebDriverManager.chromedriver().setup();
-            //TO DO:save driver to custom path.
-            //Now need :
-            // 1) Open : External Libraries --> Maven:io.github.bonigarcia:webdrivermanager:5.2.2 -->
-            //           --> webdrivermanager.properties
-            // 2) Change : wdm.cachePath=~/.cache/selenium/ to your custom path
-
+        WebDriverManager.edgedriver().setup();
+        WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.safaridriver().setup();
     }
-    @NotNull
     @BeforeAll
-    public static WebDriver initializeDriver() {
+    public static WebDriver initializeDriver() throws InterruptedException {
 
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-        return driver;
+                return driver;
     }
-    @AfterEach
-    void teardown() {
+    @AfterAll
+    public static void tearDown() {
         driver.quit();
     }
 

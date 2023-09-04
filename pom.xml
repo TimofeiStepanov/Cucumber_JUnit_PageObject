@@ -121,8 +121,14 @@
                     <includes>
                         <include>**/*Tests.java</include>
                     </includes>
+                    <properties>
+                        <configurationParameters>
+                            cucumber.junit-platform.naming-strategy=long
+                        </configurationParameters>
+                    </properties>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 

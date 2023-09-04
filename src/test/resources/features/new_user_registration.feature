@@ -36,9 +36,9 @@ Feature: Automation end2end tests   to verify users
 
     Given I am on HomePage
     When I move to Login / Singin page
-    Then I can registrate New user
-    When I move to registation form
-    Then I ifll registation form
+    Then I can registration New user
+    When I move to registration form
+    Then I fill registration form
      And Create new account
 
 
