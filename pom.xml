@@ -33,7 +33,7 @@
             <version>${selenium.version}</version>
         </dependency>
 
-        <!-- WebDriverManager -->
+        <!-- WebDriverSetUp -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
@@ -74,14 +74,6 @@
             <scope>test</scope>
         </dependency>
 
-<!--        &lt;!&ndash; testNG &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.testng</groupId>-->
-<!--            <artifactId>testng</artifactId>-->
-<!--            <version>7.7.0</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency> -->
-
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -98,6 +90,12 @@
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
             <version>24.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.5.2</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -121,11 +119,11 @@
                     <includes>
                         <include>**/*Tests.java</include>
                     </includes>
-                    <properties>
-                        <configurationParameters>
-                            cucumber.junit-platform.naming-strategy=long
-                        </configurationParameters>
-                    </properties>
+<!--                    <properties>-->
+<!--                        <configurationParameters>-->
+<!--                            cucumber.junit-platform.naming-strategy=long-->
+<!--                        </configurationParameters>-->
+<!--                    </properties>-->
                 </configuration>
             </plugin>
 
