@@ -1,38 +1,54 @@
 package stepDefinitions;
 
-import org.jetbrains.annotations.NotNull;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 
 public class TestBase {
-
-    public WebDriver driver;
 
     @BeforeAll
 
     public static WebDriver initializeDriver() {
 
-//        WebDriverManager.chromedriver().setup();
-//        WebDriverManager.edgedriver().setup();
+        WebDriverManager.chromedriver().setup();
+        WebDriverManager.edgedriver().setup();
         WebDriverManager.firefoxdriver().setup();
 //        WebDriverManager.safaridriver().setup();
 
 
+         WebDriver driver;
 
-//        WebDriver driver = new ChromeDriver();
-        WebDriver driver = new FirefoxDriver();
-//        WebDriver driver = new EdgeDriver();
-//        WebDriver driver = new SafariDriver();
-            driver.manage().window().maximize();
-
-        return driver;
+        String webdriver = System.getProperty("browser","edge");
+        switch(webdriver) {
+            case "firefox" -> {
+                driver = new FirefoxDriver();
+                driver.manage().window().maximize();
+                return driver;
+            }
+            case "chrome" -> {
+                driver = new ChromeDriver();
+                driver.manage().window().maximize();
+                return driver;
+            }
+            case "edge" -> {
+                driver = new EdgeDriver();
+                driver.manage().window().maximize();
+                return driver;
+            }
+//            case "safari" -> {
+//                driver = new SafariDriver();
+//                driver.manage().window().maximize();
+//                return driver;
+//            }
+            default -> throw new RuntimeException("Unsupported webdriver: " + webdriver);
+        }
     }
-
 
     @AfterAll
     public static void tearDown() {
