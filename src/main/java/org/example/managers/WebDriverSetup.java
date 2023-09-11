@@ -1,18 +1,15 @@
-package stepDefinitions;
+package org.example.managers;
+
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+public class WebDriverSetup {
 
-
-public class TestBase {
-
-    @BeforeAll
+    WebDriver driver;
 
     public static WebDriver initializeDriver() {
 
@@ -22,22 +19,22 @@ public class TestBase {
 //        WebDriverManager.safaridriver().setup();
 
 
-         WebDriver driver;
+
 
         String webdriver = System.getProperty("browser","edge");
         switch(webdriver) {
             case "firefox" -> {
-                driver = new FirefoxDriver();
+                WebDriver driver = new FirefoxDriver();
                 driver.manage().window().maximize();
                 return driver;
             }
             case "chrome" -> {
-                driver = new ChromeDriver();
+                WebDriver driver = new ChromeDriver();
                 driver.manage().window().maximize();
                 return driver;
             }
             case "edge" -> {
-                driver = new EdgeDriver();
+                WebDriver driver = new EdgeDriver();
                 driver.manage().window().maximize();
                 return driver;
             }
@@ -49,11 +46,7 @@ public class TestBase {
             default -> throw new RuntimeException("Unsupported webdriver: " + webdriver);
         }
     }
-
-    @AfterAll
-    public static void tearDown() {
-      initializeDriver().quit();
+    public void tearDown(){
+        driver.quit();
     }
-
-
 }

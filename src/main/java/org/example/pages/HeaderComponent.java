@@ -17,21 +17,27 @@ public class HeaderComponent{
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//*[@href=\'/login\']")
-    WebElement login;
-
-
+    @FindBy(xpath = "//*[@href='/login']")
+    WebElement loginButton;
+    @FindBy(xpath = "//*[@href='/logout']")
+    WebElement logoutButton;
+    @FindBy(xpath = "//*[@href='/delete_account']" )
+    WebElement deleteAccButton;
+    @FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[5]/a")
+    WebElement loggedText;
+    @FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[5]/a/b")
+        WebElement loggedName;
 
 
 
     public void loginButtonPresent(){
         Wait<WebDriver> wait;
         wait = new WebDriverWait((WebDriver) driver, Duration.ofSeconds(5));
-        wait.until(d -> login.isDisplayed());
+        wait.until(d -> loginButton.isDisplayed());
     }
 
     public void clickLogin() {
 
-        login.click();
+        loginButton.click();
     }
 }

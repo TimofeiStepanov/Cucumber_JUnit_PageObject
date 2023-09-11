@@ -42,14 +42,14 @@ Feature: Automation end2end tests   to verify users
     And User not logged
     When User move to login page
     And User correct fill form
-    And press Singup
-    And move to Singup page
-    And User correct fill to registration form
-    And press Create Account
+    And User press Signup
+    Then User move to Signup page
+    When User correct fill to registration form
+    And User press Create Account
     Then New User Account was created
     When User press Continue
-    Then User back to Home Page
-    And logged
+   Then User back to Home Page
+   And User is logged
 
 
 #    Step launch browser  performed in TestBase.class
