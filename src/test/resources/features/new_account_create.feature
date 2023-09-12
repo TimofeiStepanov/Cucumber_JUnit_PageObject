@@ -113,11 +113,11 @@ Feature: Automation end2end tests   to verify users
 #    Then User am on HomePage logged like New User
 #
 #
-#  Scenario: Delete User Account
+ Scenario: Delete User Account
 #
-#    Given User am on HomePage
+   Given User am on HomePage
 #    And User is logged
-#    When User Click Delete Account button for moving to Delete_account page
+   When User Click Delete Account button for moving to Delete_account page
 #    When I Click Continue button to confirm and moving to Home page
 #    Then User Account was Deleted
 #

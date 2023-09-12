@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,12 +26,13 @@ public class HeaderComponent{
     WebElement deleteAccButton;
     @FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[5]/a")
     WebElement loggedText;
-    @FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[5]/a/b")
+    @FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[5]/a")
         WebElement loggedName;
 
+    @FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[10]/a")
+    WebElement loggedLink;
 
-
-    public void loginButtonPresent(){
+    public void loginButtonDisplaedWait(){
         Wait<WebDriver> wait;
         wait = new WebDriverWait((WebDriver) driver, Duration.ofSeconds(5));
         wait.until(d -> loginButton.isDisplayed());
@@ -40,4 +42,11 @@ public class HeaderComponent{
 
         loginButton.click();
     }
+    public String loggedNameGet(){
+        return loggedName.getText();
+    }
+    public void deleteAccount(){
+        deleteAccButton.click();
+    }
+
 }

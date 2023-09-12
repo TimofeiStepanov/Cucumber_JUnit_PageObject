@@ -1,14 +1,19 @@
 package org.example.stepDefinitions;
 
 
+import io.cucumber.java.After;
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.managers.PageObjectManager;
 import org.example.managers.WebDriverSetup;
 import org.example.pages.*;
+import org.junit.jupiter.api.Assumptions;
 import org.openqa.selenium.WebDriver;
+import org.junit.jupiter.api.Assertions;
 
 
 public class StepsCreateNewAccount {
@@ -21,7 +26,8 @@ public class StepsCreateNewAccount {
 //    HeaderComponent headerComponent = pageObjectManager.getHeaderComponent();
 //    LoginPage loginPage = pageObjectManager.getLoginPage();
 //    SignupPage signupPage = pageObjectManager.getSignupPage();
-//    AccountCreateMassage accountCreateMassage = pageObjectManager.getAccountCreatedPage();WebDriver driver = WebDriverSetup.initializeDriver();
+//    AccountCreateMassage accountCreateMassage = pageObjectManager.getAccountCreatedPage();
+
 
     WebDriver driver;
     PageObjectManager pageObjectManager;
@@ -34,6 +40,7 @@ public class StepsCreateNewAccount {
 
     @Before
     public void setTestArea() {
+
         driver = WebDriverSetup.initializeDriver();
         pageObjectManager = new PageObjectManager(driver);
         homePage = pageObjectManager.getHomePage();
@@ -46,11 +53,13 @@ public class StepsCreateNewAccount {
     @Given("User on HomePage")
     public void userOnHomePage() {
         homePage.goToHomePage();
+        Assertions.assertEquals(homePage.urlCurrentGet(),homePage.baseUrl);
     }
 
     @Given("User not logged")
     public void userNotLogged() {
-        headerComponent.loginButtonPresent();
+        headerComponent.loginButtonDisplaedWait();
+
     }
 
     @When("User move to login page")
@@ -100,29 +109,37 @@ public class StepsCreateNewAccount {
 
     @Then("New User Account was created")
     public void newUserAccountWasCreated() {
-
+        Assertions.assertEquals(accountCreateMassage.accCreateMassageTextget(),"ACCOUNT CREATED!");
     }
 
     @When("User press Continue")
     public void userPressContinue() {
         accountCreateMassage.accCreateConfirm();
-
+        String url = driver.getCurrentUrl();
+        if (url.equals("https://automationexercise.com/account_created#google_vignette")) {
+            driver.get("https://automationexercise.com/account_created");
+            accountCreateMassage.accCreateConfirm();
+        }
     }
 
     @Then("User back to Home Page")
     public void userBackToHomePage() {
 
+        Assertions.assertEquals(homePage.urlCurrentGet(), homePage.baseUrl);
     }
-
     @Then("User is logged")
     public void userIsLogged() {
 
+//        Assertions.assertEquals(headerComponent.loggedNameGet(),loginPage.inputedNameGet());
     }
 
-//    @After
+
+
+//    @AfterAll
 //    public void removeDriver() {
-//        driver.close();
-//        driver.quit();
+//
+////        driver.quit();
+
 //    }
 
 

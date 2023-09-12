@@ -27,10 +27,14 @@ public class LoginPage {
 
 
     public void nameInput(){
+        String name;
+        name = "John";
         nameInputField.click();
-        nameInputField.sendKeys("John");
+        nameInputField.sendKeys(name);
     }
-
+    public String inputedNameGet(){
+        return nameInputField.getText();
+    }
     public void emailInput(){
         emailInputField.click();
         emailInputField.sendKeys("john321@mail.com");

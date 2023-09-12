@@ -20,4 +20,9 @@ public class AccountCreateMassage {
     public void accCreateConfirm(){
        continueButton.click();
     }
+
+    public String accCreateMassageTextget(){
+        return accCreateH2Text.getText();
+
+    }
 }
