@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/features/account_management.feature",
-        glue = {"/tests/stepsDefinitions"},
+        glue = {"/tests"},
         plugin = {"pretty", "html:cucumber-html-report/cucumber-report.html","json:cucumber-json-report/cucumber.json"},
         snippets = CucumberOptions.SnippetType.CAMELCASE
 

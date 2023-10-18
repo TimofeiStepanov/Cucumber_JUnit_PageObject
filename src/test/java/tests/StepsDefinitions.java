@@ -1,20 +1,19 @@
-package tests.stepsDefinitions;
+package tests;
 
 
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.example.pages.HomePage;
 import org.junit.Test;
-import tests.CreateAccountSteps;
-import tests.DeleteAccountSteps;
-import tests.LoginSteps;
-import tests.LogoutSteps;
+import org.junit.jupiter.api.Assertions;
+import tests.*;
 
 import static tests.BaseStep.getDriver;
 
 
-public class StepsDefinitions {
+public class StepsDefinitions extends BaseStep {
 
     CreateAccountSteps createAccountSteps = new CreateAccountSteps();
     DeleteAccountSteps deleteAccountSteps = new DeleteAccountSteps();
@@ -34,7 +33,10 @@ public class StepsDefinitions {
 
     @Given("John on HomePage")
     public void johnOnHomePage() {
+
         createAccountSteps.navigateToHomePage();
+
+        Assertions.assertEquals(homePage.getBASE_URL(),getDriver().getCurrentUrl(),  "HomePage not upload");
     }
 
 
