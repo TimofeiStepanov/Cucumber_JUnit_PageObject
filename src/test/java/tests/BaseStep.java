@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class BaseStep {
 
-        public static WebDriver driver = WebDriverSetup.initializeDriver();
+        private static final WebDriver driver = WebDriverSetup.initializeDriver();
 
         HomePage homePage = new HomePage(driver);
         NavigationBar navigationBar = new NavigationBar(driver);
@@ -17,4 +17,5 @@ public class BaseStep {
         public static WebDriver getDriver(){
                 return driver;
         }
+
 }

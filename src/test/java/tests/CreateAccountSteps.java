@@ -7,14 +7,16 @@ import org.junit.jupiter.api.*;
 public class CreateAccountSteps extends BaseStep {
 
 
-    @DisplayName("Navigate to HomePage Step")
+
     public void navigateToHomePage() {
-        driver.get(homePage.getBaseUrl());
+        getDriver().get(homePage.getBASE_URL());
     }
-    @DisplayName("Home page test")
+
+    @DisplayName("Home Page upload test")
     public void homePageTest() {
-        Assertions.assertEquals(homePage.getBaseUrl(),driver.getCurrentUrl(),  "HomePage not upload");
+        Assertions.assertEquals(homePage.getBASE_URL(),getDriver().getCurrentUrl(),  "HomePage not upload");
     }
+
     @DisplayName("User logged or not logged test")
     public void loginStatusTest() {
         Assumptions.assumeTrue(navigationBar.loginButtonDisplayed(), "Logit/Signup link not displaed");
@@ -28,14 +30,15 @@ public class CreateAccountSteps extends BaseStep {
 
     @DisplayName("Login page upload test")
     public void loginPageUploadTest() {
-        Assertions.assertEquals(loginPage.getBaseUrl(), driver.getCurrentUrl());
+        Assertions.assertEquals(loginPage.getBaseUrl(), getDriver().getCurrentUrl());
     }
 
+    @DisplayName("Signup form test")
     public void signupFormTest() {
         Assumptions.assumeTrue(loginPage.signupFormDisplayed(), "Signup form is displayed");
     }
 
-    @DisplayName("Name field Signup form test")
+    @DisplayName("Name field in Signup form test")
     public void signupNameFieldTest(String nickName) {
         Assumptions.assumeTrue(loginPage.nameSignupInputFieldDisplayed(), "Name field Signup form displayed");
         loginPage.nameInput(nickName);
@@ -48,11 +51,11 @@ public class CreateAccountSteps extends BaseStep {
 
     public void signupButtonTest() {
         loginPage.signupButtonClick();
-        Assertions.assertEquals(signupPage.getBaseUrl(), driver.getCurrentUrl());
+        Assertions.assertEquals(signupPage.getBaseUrl(), getDriver().getCurrentUrl());
     }
 
     public void accountInformationFormTest() {
-        Assertions.assertEquals(signupPage.getBaseUrl(), driver.getCurrentUrl());
+        Assertions.assertEquals(signupPage.getBaseUrl(), getDriver().getCurrentUrl());
         Assumptions.assumeTrue(signupPage.accountInformatinFormIsPresent(), "Account Information form is not displayed");
     }
 
@@ -136,7 +139,7 @@ public class CreateAccountSteps extends BaseStep {
     }
 
     public void returnToHomePageTest() {
-        Assertions.assertEquals(driver.getCurrentUrl(), homePage.getBaseUrl());
+        Assertions.assertEquals(getDriver().getCurrentUrl(), homePage.getBASE_URL());
     }
 
     public void loggedNameInNavBarTest() {
@@ -145,6 +148,6 @@ public class CreateAccountSteps extends BaseStep {
 
 
     public void driverStop() {
-        driver.quit();
+        getDriver().quit();
     }
 }
