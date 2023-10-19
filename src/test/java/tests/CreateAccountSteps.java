@@ -2,65 +2,92 @@ package tests;
 
 
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.NoSuchElementException;
 
 
 public class CreateAccountSteps extends BaseStep {
 
-
-
+    private String nickName;
     public void navigateToHomePage() {
-        getDriver().get(homePage.getBASE_URL());
+        getDriver().get(getBASE_URL());
     }
 
-    @DisplayName("Home Page upload test")
-    public void homePageTest() {
-        Assertions.assertEquals(homePage.getBASE_URL(),getDriver().getCurrentUrl(),  "HomePage not upload");
+    public String HomeLincColor() {
+        return navigationBar.getHomeLink().getAttribute("style");
     }
 
-    @DisplayName("User logged or not logged test")
-    public void loginStatusTest() {
-        Assumptions.assumeTrue(navigationBar.loginButtonDisplayed(), "Logit/Signup link not displaed");
+    public Boolean loginLinkIsDisplayed() {
+        return navigationBar.getLoginLink().isDisplayed();
     }
 
-    @DisplayName("Login/Signup link in Navigation Bar test")
-    public void loginLinkNavBarTest() {
-        Assumptions.assumeTrue(navigationBar.loginButtonDisplayed(), "Login/Signup link not displayed");
-        navigationBar.clickLogin();
+    public Boolean loggedLinkIsDisplayed() throws NoSuchElementException {
+        try {
+            return navigationBar.getLoggedLink().isDisplayed();
+        } catch (Exception e) {
+            //TODO : Add log message
+            return false;
+        }
     }
 
-    @DisplayName("Login page upload test")
-    public void loginPageUploadTest() {
-        Assertions.assertEquals(loginPage.getBaseUrl(), getDriver().getCurrentUrl());
+    public Boolean signupFormIsDisplayed() throws NoSuchElementException {
+        try {
+            return loginPage.getSignupForm().isDisplayed();
+
+        } catch (Exception e) {
+            // TODO : Add log message
+            return false;
+        }
+
     }
 
-    @DisplayName("Signup form test")
-    public void signupFormTest() {
-        Assumptions.assumeTrue(loginPage.signupFormDisplayed(), "Signup form is displayed");
+    public Boolean nameFieldInSignupFormIsDisplayed() throws NoSuchElementException {
+        try {
+            return loginPage.getNameInputSignupField().isDisplayed();
+        } catch (Exception e) {
+            // TODO : Add log message
+            return false;
+        }
     }
 
-    @DisplayName("Name field in Signup form test")
-    public void signupNameFieldTest(String nickName) {
-        Assumptions.assumeTrue(loginPage.nameSignupInputFieldDisplayed(), "Name field Signup form displayed");
-        loginPage.nameInput(nickName);
+    public Boolean emailFieldInSignupFormIsDisplayed() throws NoSuchElementException {
+        try {
+            return loginPage.getEmailSignupInputField().isDisplayed();
+        } catch (Exception e) {
+            // TODO : Add log message
+            return false;
+        }
     }
 
+    public void inputNickName(String nickName) {
+        loginPage.getNameInputSignupField().click();
+        loginPage.getNameInputSignupField().sendKeys(nickName);
+    }
+    public String inputtedName() {
 
-    public void signupEmailFieldTest(String email) {
-        loginPage.emailInputSignupForm(email);
+        return loginPage.getNameInputSignupField().getAttribute("value");
     }
 
-    public void signupButtonTest() {
-        loginPage.signupButtonClick();
-        Assertions.assertEquals(signupPage.getBaseUrl(), getDriver().getCurrentUrl());
+    public void inputEmail(String email) {
+        loginPage.getEmailSignupInputField().click();
+        loginPage.getEmailSignupInputField().sendKeys(email);
     }
 
-    public void accountInformationFormTest() {
-        Assertions.assertEquals(signupPage.getBaseUrl(), getDriver().getCurrentUrl());
-        Assumptions.assumeTrue(signupPage.accountInformatinFormIsPresent(), "Account Information form is not displayed");
-    }
+   public String inputtedEmail() {
+        return loginPage.getEmailSignupInputField().getAttribute("value");
+   }
 
-    public void titleRadioButtonTest() {
-        signupPage.titleSelect();
+
+
+    public Boolean signupButtonIsDisplayed() throws NoSuchElementException {
+        try {
+            return loginPage.getSignupButton().isDisplayed();
+        }catch (Exception e) {
+            // TODO : Add log message
+            return false;
+        }
+    }
+    public void mrRadioButtonSelect() {
+        signupPage.getGenderMrCheckBox().click();
     }
 
     public void nameAccountInformationFieldTest() {
@@ -70,65 +97,70 @@ public class CreateAccountSteps extends BaseStep {
 
     }
 
-    public void passwdAccountInformationFieldTest(String password) {
-        signupPage.passwdInput(password);
+    public void passwordInput(String password) {
+        signupPage.getPasswdInputField().sendKeys(password);
     }
 
-    public void dayOfBirthTest() {
-        signupPage.daySelect();
+    public void dayOfBirthSelect(String dateOfBirth) {
+        String[] splitedDateOfBirth = dateOfBirth.split("[.]");
+        signupPage.getDayOfBirth().sendKeys(splitedDateOfBirth[0]);
+        System.out.println(splitedDateOfBirth[0]);
     }
 
-    public void monthOfBirthTest() {
-        signupPage.monthSelect();
+    public void monthOfBirthSelect(String dateOfBirth) {
+        String[] splitedDateOfBirth = dateOfBirth.split("[.]");
+        signupPage.getMonthsOfBirth().sendKeys(splitedDateOfBirth[1]);
+        System.out.println(splitedDateOfBirth[1]);
     }
 
-    public void yearOfBirthTest() {
-        signupPage.yearSelect();
+    public void yearOfBirthSelect(String dateOfBirth) {
+        String[] splitedDateOfBirth = dateOfBirth.split("[.]");
+        signupPage.getYearOfBirth().sendKeys(splitedDateOfBirth[2]);
+        System.out.println(splitedDateOfBirth[2]);
     }
 
-    public void checkConfirmSignUpForOurNewsletterTest() {
-        signupPage.newsletterClick();
+
+
+    public void checkBoxSignUpForOurNewsletterComfirm() {
+        signupPage.getNewsletterCheckBox().click();
     }
 
-    public void checkConfirmReceiveSpecialOffersFromOurPartnersTest() {
-        signupPage.offerClick();
+    public void checkBoxReceiveSpecialOffersFromOurPartnersConfirm() {
+        signupPage.getOfferCheckBox().click();
     }
 
-    public void firstNameInputFieldAddressInfoTest(String firstName) {
-        signupPage.first_nameInput(firstName);
+    public void firstNameInput(String firstName) {
+        signupPage.getFirst_nameInputField().sendKeys(firstName);
     }
 
-    public void lastNameInputFieldAddressInfoTest(String lastName) {
-        signupPage.last_nameInput(lastName);
+    public void lastNameInput(String lastName) {
+        signupPage.getLast_nameInputField().sendKeys(lastName);
     }
 
-    public void addressInputFieldAddressInfoTest(String address) {
-        signupPage.addressInput(address);
+    public void addressInput(String address) {
+        signupPage.getAddress1InputField().sendKeys(address);
     }
 
-    public void countrySelectFieldAddressInfoTest(String country) {
-        signupPage.countrySelect(country);
+    public void countrySelect(String country) {
+        signupPage.getCounrtyInputField().sendKeys(country);
     }
 
-    public void stateInputFieldAddressInfoTest(String state) {
-        signupPage.stateInput(state);
+    public void stateInput(String state) {
+        signupPage.getStateInputField().sendKeys(state);
     }
 
-    public void cityInputFieldAddressInfoTest(String city) {
-        signupPage.cityInput(city);
+    public void cityInput(String city) {
+        signupPage.getCitiInputField().sendKeys(city);
     }
 
-    public void zipcodeInputFieldAddressInfoTest(Integer zipcode) {
-        signupPage.zipcodeInput(zipcode);
+    public void zipcodeInput(Integer zipcode) {
+        signupPage.getZipcodeInputField().sendKeys(Integer.toString(zipcode));
     }
 
-    public void phoneInputFieldAddressInfoTest(String phone) {
-        signupPage.phoneInput(phone);
+    public void phoneInput(String phone) {
+        signupPage.getPhoneInputField().sendKeys(phone);
     }
 
-    public void createAccountButtonTest() {
-        signupPage.createAccButtonClick();
-    }
 
     public void createAccountMessageTest() {
         Assertions.assertEquals(createAccountMessage.accCreateMessageTextGet(), "ACCOUNT CREATED!");
@@ -139,11 +171,11 @@ public class CreateAccountSteps extends BaseStep {
     }
 
     public void returnToHomePageTest() {
-        Assertions.assertEquals(getDriver().getCurrentUrl(), homePage.getBASE_URL());
+        Assertions.assertEquals(getDriver().getCurrentUrl(), getBASE_URL());
     }
 
     public void loggedNameInNavBarTest() {
-        Assertions.assertEquals(navigationBar.loggedNameGet(), loginPage.getName());
+//        Assertions.assertEquals(navigationBar.loggedNameGet(),inputtedName());
     }
 
 

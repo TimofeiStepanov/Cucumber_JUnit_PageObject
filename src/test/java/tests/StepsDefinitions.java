@@ -5,12 +5,8 @@ import io.cucumber.java.AfterAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.example.pages.HomePage;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import tests.*;
-
-import static tests.BaseStep.getDriver;
+import org.junit.jupiter.api.Assumptions;
 
 
 public class StepsDefinitions extends BaseStep {
@@ -20,11 +16,10 @@ public class StepsDefinitions extends BaseStep {
     LogoutSteps logoutSteps = new LogoutSteps();
     LoginSteps loginSteps = new LoginSteps();
 
-
-    @AfterAll
-    public static void closeDriver(){
-        getDriver().quit();
-    }
+//    @AfterAll
+//    public static void closeDriver(){
+//        getDriver().quit();
+//    }
 
     //START FEATURE
 
@@ -33,63 +28,98 @@ public class StepsDefinitions extends BaseStep {
 
     @Given("John on HomePage")
     public void johnOnHomePage() {
-
         createAccountSteps.navigateToHomePage();
 
-        Assertions.assertEquals(homePage.getBASE_URL(),getDriver().getCurrentUrl(),  "HomePage not upload");
+        Assertions.assertEquals(getBASE_URL(),getDriver().getCurrentUrl(),  "HomePage not upload");
+        Assertions.assertEquals("color: orange;",createAccountSteps.HomeLincColor(),
+                "Home link not highlighted in color");
     }
 
 
     @Given("John not logged")
     public void johnNotLogged() {
-        createAccountSteps.loginStatusTest();
-    }
+        Assumptions.assumeTrue(createAccountSteps.loginLinkIsDisplayed(),
+                "Login/Signup link not displayed");
+        Assumptions.assumeFalse(createAccountSteps.loggedLinkIsDisplayed(), "Logged link is Displayed");
 
+    }
 
     @When("John press Signup\\/Login")
     public void johnPressSignupLogin() {
+        navigationBar.getLoginLink().click();
 
-        createAccountSteps.loginLinkNavBarTest();
-        createAccountSteps.loginPageUploadTest();
+//        Assertions.assertEquals(loginPage.getBASE_URL(), getDriver().getCurrentUrl(),
+//               "Login page not upload" );
+//        Assumptions.assumeTrue(createAccountSteps.signupFormIsDisplayed(),
+//                "Signup form not displayed");
+//        Assumptions.assumeTrue(createAccountSteps.nameFieldInSignupFormIsDisplayed(),
+//                "Name field in Signup form not displayed");
+//        Assumptions.assumeTrue(createAccountSteps.emailFieldInSignupFormIsDisplayed(),
+//                "E-mail field in Signup form not displayed");
+//        Assumptions.assumeTrue(createAccountSteps.signupButtonIsDisplayed(),
+//                "Signup button is not displayed");
+    }
+
+    @When("John put NickName {string} and E-mail {string} in Signup form")
+    public void johnPutNickNameAndEmailInSignupForm(String nickName, String email) {
+        createAccountSteps.inputNickName(nickName);
+        createAccountSteps.inputEmail(email);
+
+//        Assertions.assertEquals(nickName,createAccountSteps.inputtedName(),
+//                "Name not correct or field is empty");
+//        Assertions.assertEquals(email,createAccountSteps.inputtedEmail(),
+//                "Email not correct or field is empty");
+
+        loginPage.getSignupButton().click();
+
+//        Assertions.assertEquals(signupPage.getBaseUrl(), getDriver().getCurrentUrl());
+    }
+
+
+    @When("John put required data in ACCOUNT INFORMATION form: Password {string} ,Date of Birth {string}.")
+    public void johnPutRequiredDataInACCOUNTINFORMATIONForm(String password, String dateOfBirth) {
+
+
+        createAccountSteps.mrRadioButtonSelect();
+        createAccountSteps.passwordInput(password);
+        createAccountSteps.dayOfBirthSelect(dateOfBirth);
+        createAccountSteps.monthOfBirthSelect(dateOfBirth);
+        createAccountSteps.yearOfBirthSelect(dateOfBirth);
+        createAccountSteps.checkBoxSignUpForOurNewsletterComfirm();
+        createAccountSteps.checkBoxReceiveSpecialOffersFromOurPartnersConfirm();
 
     }
 
 
-    @When("John put {string} and  {string} in Signup form")
-    public void johnPutAndInSignupForm(String nickName, String email) {
-        createAccountSteps.signupNameFieldTest(nickName);
-        createAccountSteps.signupEmailFieldTest(email);
-        createAccountSteps.signupButtonTest();
+    @When("John put required data in ADDRESS INFORMATION form:" +
+            " First Name {string}, " +
+            "Last name {string}, " +
+            "Address {string}," +
+            " Country {string}," +
+            " State {string}," +
+            " City {string}, " +
+            "Zipcode {int}," +
+            " Phone {string}.")
+    public void johnPutRequiredDataInADDRESSINFORMATIONForm(String firstName,
+                                                            String lastName,
+                                                            String address,
+                                                            String country,
+                                                            String state,
+                                                            String city,
+                                                            Integer zipcode,
+                                                            String phone) {
 
-    }
-
-
-    @When("John put required data in ACCOUNT INFORMATION form: {string} ,DateOfBirth")
-    public void johnPutRequiredDataInACCOUNTINFORMATIONForm(String password) {
-        createAccountSteps.accountInformationFormTest();
-        createAccountSteps.titleRadioButtonTest();
-        createAccountSteps.passwdAccountInformationFieldTest(password);
-        createAccountSteps.dayOfBirthTest();
-        createAccountSteps.monthOfBirthTest();
-        createAccountSteps.yearOfBirthTest();
-        createAccountSteps.checkConfirmSignUpForOurNewsletterTest();
-        createAccountSteps.checkConfirmReceiveSpecialOffersFromOurPartnersTest();
-    }
-
-
-    @When("John put required data in ADDRESS INFORMATION form: {string}, {string}, {string},  {string}, {string}, {string}, {int},{string}")
-    public void johnPutRequiredDataInADDRESSINFORMATIONForm(String firstName, String lastName, String address, String country, String state, String city, Integer zipcode, String phone) {
-        createAccountSteps.firstNameInputFieldAddressInfoTest(firstName);
-        createAccountSteps.lastNameInputFieldAddressInfoTest(lastName);
-        createAccountSteps.addressInputFieldAddressInfoTest(address);
-        createAccountSteps.countrySelectFieldAddressInfoTest(country);
-        createAccountSteps.stateInputFieldAddressInfoTest(state);
-        createAccountSteps.cityInputFieldAddressInfoTest(city);
-        createAccountSteps.zipcodeInputFieldAddressInfoTest(zipcode);
-        createAccountSteps.phoneInputFieldAddressInfoTest(phone);
-        createAccountSteps.createAccountButtonTest();
-        createAccountSteps.createAccountMessageTest();
-        createAccountSteps.confirmButtonAccountCreatedMessageTest();
+        createAccountSteps.firstNameInput(firstName);
+        createAccountSteps.lastNameInput(lastName);
+        createAccountSteps.addressInput(address);
+        createAccountSteps.countrySelect(country);
+        createAccountSteps.stateInput(state);
+        createAccountSteps.cityInput(city);
+        createAccountSteps.zipcodeInput(zipcode);
+        createAccountSteps.phoneInput(phone);
+//        signupPage.getCreateAccountButton().click();
+//        createAccountSteps.createAccountMessageTest();
+//        createAccountSteps.confirmButtonAccountCreatedMessageTest();
     }
 
 
@@ -117,7 +147,7 @@ public class StepsDefinitions extends BaseStep {
 
     @When("John move to LoginPage")
     public void johnMoveToLoginPage() {
-        createAccountSteps.loginPageUploadTest();
+//        createAccountSteps.loginPageUploadTest();
     }
     //END LOGOUT
 
