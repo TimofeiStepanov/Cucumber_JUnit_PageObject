@@ -11,7 +11,7 @@ public class BaseStep {
 
 
 
-        HomePage homePage = new HomePage(driver);
+//        HomePage homePage = new HomePage(driver);
 
 
         NavigationBar navigationBar = new NavigationBar(driver);
@@ -27,7 +27,7 @@ public class BaseStep {
         public String getBASE_URL(){
                 return BASE_URL;
         }
-        public WebDriver getDriver(){
+        public static WebDriver getDriver(){
                 return driver;
         }
 

@@ -1,6 +1,7 @@
 package steps;
 
 
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -18,10 +19,10 @@ public class StepsDefinitions extends BaseStep {
     DeleteAccountMessageSteps deleteAccountMessageSteps = new DeleteAccountMessageSteps();
 
 
-//    @AfterAll
-//    public static void closeDriver(){
-//        getDriver().quit();
-//    }
+    @AfterAll
+    public static void closeDriver(){
+        getDriver().quit();
+    }
 
     //START FEATURE
 

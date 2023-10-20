@@ -15,12 +15,12 @@ public class CreateAccountMessage {
     }
 
     @FindBy(xpath = "//*[@data-qa='account-created']")
-    private static WebElement accCreateH2Text;
+    private static WebElement accountCreateH2Text;
     @FindBy(xpath = "//*[@data-qa='continue-button']")
     private static WebElement continueButton;
 
-    public WebElement getAccCreateH2Text() {
-        return accCreateH2Text;
+    public WebElement getAccountCreateH2Text() {
+        return accountCreateH2Text;
     }
     public WebElement getContinueButton() {
         return continueButton;

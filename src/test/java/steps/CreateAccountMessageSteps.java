@@ -3,7 +3,7 @@ package steps;
 public class CreateAccountMessageSteps extends BaseStep{
 
     public String accountCreatedMessage() {
-        return createAccountMessage.getAccCreateH2Text().getText();
+        return createAccountMessage.getAccountCreateH2Text().getText();
     }
     public void accCreateConfirm(){
         createAccountMessage.getContinueButton().click();
