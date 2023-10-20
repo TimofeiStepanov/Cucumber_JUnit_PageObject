@@ -20,19 +20,16 @@ public class SignupPageSteps extends BaseStep{
     public void dayOfBirthSelect(String dateOfBirth) {
         String[] splitedDateOfBirth = dateOfBirth.split("[.]");
         signupPage.getDayOfBirth().sendKeys(splitedDateOfBirth[0]);
-        System.out.println(splitedDateOfBirth[0]);
     }
 
     public void monthOfBirthSelect(String dateOfBirth) {
         String[] splitedDateOfBirth = dateOfBirth.split("[.]");
         signupPage.getMonthsOfBirth().sendKeys(splitedDateOfBirth[1]);
-        System.out.println(splitedDateOfBirth[1]);
     }
 
     public void yearOfBirthSelect(String dateOfBirth) {
         String[] splitedDateOfBirth = dateOfBirth.split("[.]");
         signupPage.getYearOfBirth().sendKeys(splitedDateOfBirth[2]);
-        System.out.println(splitedDateOfBirth[2]);
     }
 
 
