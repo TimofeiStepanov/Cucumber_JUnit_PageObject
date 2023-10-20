@@ -1,7 +1,6 @@
-package tests;
+package steps;
 
 
-import io.cucumber.java.AfterAll;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -16,6 +15,17 @@ public class StepsDefinitions extends BaseStep {
     LogoutSteps logoutSteps = new LogoutSteps();
     LoginSteps loginSteps = new LoginSteps();
 
+
+    //New Steps init
+
+    HomePageSteps homePageSteps = new HomePageSteps();
+    NavigationBarSteps navigationBarSteps = new NavigationBarSteps();
+    LoginPageSteps loginPageSteps = new LoginPageSteps();
+    SignupPageSteps signupPageSteps = new SignupPageSteps();
+    CreateAccountMessageSteps createAccountMessageSteps = new CreateAccountMessageSteps();
+    DeleteAccountMessageSteps deleteAccountMessageSteps = new DeleteAccountMessageSteps();
+
+
 //    @AfterAll
 //    public static void closeDriver(){
 //        getDriver().quit();
@@ -28,26 +38,26 @@ public class StepsDefinitions extends BaseStep {
 
     @Given("John on HomePage")
     public void johnOnHomePage() {
-        createAccountSteps.navigateToHomePage();
+        homePageSteps.navigateToHomePage();
 
         Assertions.assertEquals(getBASE_URL(),getDriver().getCurrentUrl(),  "HomePage not upload");
-        Assertions.assertEquals("color: orange;",createAccountSteps.HomeLincColor(),
+        Assertions.assertEquals("color: orange;",navigationBarSteps.HomeLincColor(),
                 "Home link not highlighted in color");
     }
 
 
     @Given("John not logged")
     public void johnNotLogged() {
-        Assumptions.assumeTrue(createAccountSteps.loginLinkIsDisplayed(),
+        Assumptions.assumeTrue(navigationBarSteps.loginLinkIsDisplayed(),
                 "Login/Signup link not displayed");
-        Assumptions.assumeFalse(createAccountSteps.loggedLinkIsDisplayed(), "Logged link is Displayed");
+        Assumptions.assumeFalse(navigationBarSteps.loggedLinkIsDisplayed(), "Logged link is Displayed");
 
     }
 
     @When("John press Signup\\/Login")
     public void johnPressSignupLogin() {
-        navigationBar.getLoginLink().click();
 
+        navigationBarSteps.SignupLoginLinkClick();
 //        Assertions.assertEquals(loginPage.getBASE_URL(), getDriver().getCurrentUrl(),
 //               "Login page not upload" );
 //        Assumptions.assumeTrue(createAccountSteps.signupFormIsDisplayed(),
@@ -62,15 +72,15 @@ public class StepsDefinitions extends BaseStep {
 
     @When("John put NickName {string} and E-mail {string} in Signup form")
     public void johnPutNickNameAndEmailInSignupForm(String nickName, String email) {
-        createAccountSteps.inputNickName(nickName);
-        createAccountSteps.inputEmail(email);
+        loginPageSteps.inputNickName(nickName);
+        loginPageSteps.inputEmail(email);
 
 //        Assertions.assertEquals(nickName,createAccountSteps.inputtedName(),
 //                "Name not correct or field is empty");
 //        Assertions.assertEquals(email,createAccountSteps.inputtedEmail(),
 //                "Email not correct or field is empty");
 
-        loginPage.getSignupButton().click();
+        loginPageSteps.signupButtonClick();
 
 //        Assertions.assertEquals(signupPage.getBaseUrl(), getDriver().getCurrentUrl());
     }
@@ -80,13 +90,13 @@ public class StepsDefinitions extends BaseStep {
     public void johnPutRequiredDataInACCOUNTINFORMATIONForm(String password, String dateOfBirth) {
 
 
-        createAccountSteps.mrRadioButtonSelect();
-        createAccountSteps.passwordInput(password);
-        createAccountSteps.dayOfBirthSelect(dateOfBirth);
-        createAccountSteps.monthOfBirthSelect(dateOfBirth);
-        createAccountSteps.yearOfBirthSelect(dateOfBirth);
-        createAccountSteps.checkBoxSignUpForOurNewsletterComfirm();
-        createAccountSteps.checkBoxReceiveSpecialOffersFromOurPartnersConfirm();
+        signupPageSteps.mrRadioButtonSelect();
+        signupPageSteps.passwordInput(password);
+        signupPageSteps.dayOfBirthSelect(dateOfBirth);
+        signupPageSteps.monthOfBirthSelect(dateOfBirth);
+        signupPageSteps.yearOfBirthSelect(dateOfBirth);
+        signupPageSteps.checkBoxSignUpForOurNewsletterComfirm();
+        signupPageSteps.checkBoxReceiveSpecialOffersFromOurPartnersConfirm();
 
     }
 
@@ -109,14 +119,14 @@ public class StepsDefinitions extends BaseStep {
                                                             Integer zipcode,
                                                             String phone) {
 
-        createAccountSteps.firstNameInput(firstName);
-        createAccountSteps.lastNameInput(lastName);
-        createAccountSteps.addressInput(address);
-        createAccountSteps.countrySelect(country);
-        createAccountSteps.stateInput(state);
-        createAccountSteps.cityInput(city);
-        createAccountSteps.zipcodeInput(zipcode);
-        createAccountSteps.phoneInput(phone);
+        signupPageSteps.firstNameInput(firstName);
+        signupPageSteps.lastNameInput(lastName);
+        signupPageSteps.addressInput(address);
+        signupPageSteps.countrySelect(country);
+        signupPageSteps.stateInput(state);
+        signupPageSteps.cityInput(city);
+        signupPageSteps.zipcodeInput(zipcode);
+        signupPageSteps.phoneInput(phone);
 //        signupPage.getCreateAccountButton().click();
 //        createAccountSteps.createAccountMessageTest();
 //        createAccountSteps.confirmButtonAccountCreatedMessageTest();
@@ -158,7 +168,7 @@ public class StepsDefinitions extends BaseStep {
     public void johnPutAndInLoginForm(String email, String password) {
         loginSteps.emailInputLoginFormTest(email);
         loginSteps.passwdInputLoginFormTest(password);
-        loginSteps.loginButtonTest();
+//        loginSteps.loginButtonTest();
     }
     //END LOGIN
 

@@ -1,4 +1,4 @@
-package tests;
+package steps;
 
 public class LoginSteps extends BaseStep {
     public void emailInputLoginFormTest(String email) {
@@ -9,8 +9,6 @@ public class LoginSteps extends BaseStep {
         loginPage.PasswdLLoginInputField(password);
     }
 
-    public void loginButtonTest() {
-        loginPage.loginButtonSubmit();
-    }
+//
 
 }

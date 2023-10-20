@@ -1,4 +1,4 @@
-package tests;
+package steps;
 
 
 import org.junit.jupiter.api.*;

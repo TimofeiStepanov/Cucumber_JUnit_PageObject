@@ -1,4 +1,4 @@
-package tests;
+package steps;
 
 import org.example.managers.WebDriverSetup;
 import org.example.pages.*;
@@ -28,7 +28,7 @@ public class BaseStep {
         public String getBASE_URL(){
                 return BASE_URL;
         }
-        public static WebDriver getDriver(){
+        public WebDriver getDriver(){
                 return driver;
         }
 
