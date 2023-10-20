@@ -1,7 +1,5 @@
 package steps;
 
-import org.example.pages.DeleteAccountMessage;
-
 public class DeleteAccountMessageSteps extends BaseStep {
 
     public void deleteAccountConfirm() {
