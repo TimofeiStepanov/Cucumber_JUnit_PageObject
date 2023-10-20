@@ -1,4 +1,4 @@
-Feature: Automation end2end tests to account management functionality
+Feature: Automation smoke tests to account management functionality
   scenarios on 'http://automationexercise.com'
   As a user John
   I want to be able create an account on site
@@ -7,17 +7,17 @@ Feature: Automation end2end tests to account management functionality
   I want to be able delete my account
 
   Scenario Outline: John REGISTERING in shop like new user
-    Given John on HomePage
-    And   John not logged
-    When John press Signup/Login
-    And John put <NickName> and  <E-mail> in Signup form
-    And John put required data in ACCOUNT INFORMATION form: <Password> ,DateOfBirth
-    And John put required data in ADDRESS INFORMATION form: <First name>, <Last name>, <Address>,  <Country>, <State>, <City>, <Zipcode>,<Phone>
-    Then John back to HomePage
-    And John is logged
-    Examples:
-      | NickName | E-mail          | First name | Last name | Password    | DateOfBirth | Address          | Country         | State   | City     | Zipcode | Phone         |
-      | "John"   | "Wick@mail.com" | "John"     | "Wick"    | "qasxdsewr" | ""          | "Any street 5-6" | "United States" | "Texas" | "Dallas" | 13245   | "+1324542542" |
+	Given John on HomePage
+	And   John not logged
+	When John press Signup/Login
+	And John put NickName <NickName> and E-mail <E-mail> in Signup form
+	And John put required data in ACCOUNT INFORMATION form: Password <Password> ,Date of Birth <DateOfBirth>.
+	And John put required data in ADDRESS INFORMATION form: First Name <FirstName>, Last name <LastName>, Address <Address>, Country <Country>, State <State>, City <City>, Zipcode <Zipcode>, Phone <Phone>.
+	Then John back to HomePage
+	And John is logged
+	Examples:
+	  | NickName | E-mail          | FirstName | LastName | Password    | DateOfBirth        | Address          | Country         | State   | City     | Zipcode | Phone         |
+	  | "John"   | "Wick@mail.com" | "John"    | "Wick"   | "qasxdsewr" | "13.November.1977" | "Any street 5-6" | "United States" | "Texas" | "Dallas" | 13245   | "+1324542542" |
 
   Scenario:John LOGOUT from shop
     When John is logged

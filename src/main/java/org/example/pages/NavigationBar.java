@@ -6,57 +6,54 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class NavigationBar {
-    final WebDriver driver;
-//    private final String baseUrl = "https://automationexercise.com/delete_account";
-    //PAGE LOCATORS
+    WebDriver driver;
+
+    @FindBy(xpath = "//li/a[text()=' Home']")
+    private static WebElement homeLink;
     @FindBy(xpath = "//*[@href='/login']")
-    WebElement loginButtonLink;
+    private static WebElement loginLink;
     @FindBy(xpath = "//*[@href='/logout']")
-    WebElement logoutButtonLink;
+    private static WebElement logoutLink;
     @FindBy(xpath = "//*[@href='/delete_account']")
-    WebElement deleteAccountLink;
-    @FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[5]/a")
-    WebElement loggedText;
-    @FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[10]/a/b")
-    WebElement loggedName;
-    @FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[10]/a")
-    WebElement loggedLink;
+    private static WebElement deleteAccountLink;
+    @FindBy(xpath = "//li/a[text() = ' Logged in as ']/b")
+    private static WebElement loggedName;
+    @FindBy(xpath = "//li/a[text() = ' Logged in as ']")
+    private static WebElement loggedLink;
+
 
     public NavigationBar(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-
-
-    //PAGE ACTIONS
-    public boolean loginButtonDisplayed() {
-        return loginButtonLink.isDisplayed();
+    public WebElement getHomeLink() {
+        return homeLink;
+    }
+    public WebElement getLoginLink() {
+        return loginLink;
+    }
+    public WebElement getLoggedLink() {
+        return loggedLink;
     }
 
-    public void clickLogin() {
-
-        loginButtonLink.click();
+    public WebElement getLoggedName() {
+        return loggedName;
     }
 
-    public String loggedNameGet() {
-        return loggedName.getText();
+    public WebElement getLogoutLink() {
+        return logoutLink;
+    }
+    public WebElement getDeleteAccountLink() {
+        return deleteAccountLink;
     }
 
-    public void deleteAccount() {
-        deleteAccountLink.click();
-    }
 
 
-    public void logoutClick() {
-        logoutButtonLink.click();
-    }
 
-    public void deleteAccountClick() {
-        deleteAccountLink.click();
-        String url = driver.getCurrentUrl();
-        if (url.equals("https://automationexercise.com/#google_vignette")) {
-            driver.get("https://automationexercise.com/delete_account");
-        }
-    }
+
+
+
+
+
 }

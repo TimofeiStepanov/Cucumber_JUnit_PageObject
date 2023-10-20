@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+
 public class CreateAccountMessage {
     final WebDriver driver;
 
@@ -13,23 +15,15 @@ public class CreateAccountMessage {
     }
 
     @FindBy(xpath = "//*[@data-qa='account-created']")
-    WebElement accCreateH2Text;
+    private static WebElement accCreateH2Text;
     @FindBy(xpath = "//*[@data-qa='continue-button']")
-    WebElement continueButton;
+    private static WebElement continueButton;
 
-
-    public void accCreateConfirm(){
-       continueButton.click();
-       String url = driver.getCurrentUrl();
-        if(url.equals("https://automationexercise.com/account_created#google_vignette")){
-            driver.navigate().refresh();
-            continueButton.click();
-        }
-
+    public WebElement getAccCreateH2Text() {
+        return accCreateH2Text;
+    }
+    public WebElement getContinueButton() {
+        return continueButton;
     }
 
-    public String accCreateMessageTextGet(){
-        return accCreateH2Text.getText();
-
-    }
 }

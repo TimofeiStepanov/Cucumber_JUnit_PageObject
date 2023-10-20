@@ -13,24 +13,15 @@ public class DeleteAccountMessage {
         PageFactory.initElements(driver, this);
     }
     @FindBy(xpath = "//*[@data-qa='account-deleted']")
-    WebElement accDeleteH2Text;
+    private static WebElement accountDeleteMessage;
     @FindBy(xpath = "//*[@data-qa='continue-button']")
-    WebElement continueButton;
+    private static WebElement continueButton;
 
-    public void accDeleteConfirm(){
-
-        continueButton.click();
-        String url = driver.getCurrentUrl();
-        if(url.equals("https://automationexercise.com/delete_account#google_vignette")){
-            driver.navigate().refresh();
-            continueButton.click();
-        }
+    public WebElement getAccountDeleteMessage() {
+        return accountDeleteMessage;
     }
-
-    public String accDeleteMessageTextGet(){
-        return accDeleteH2Text.getText();
-
+    public WebElement getContinueButton() {
+        return continueButton;
     }
-
 
 }

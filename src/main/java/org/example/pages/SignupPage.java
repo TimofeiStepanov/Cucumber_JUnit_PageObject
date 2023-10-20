@@ -8,131 +8,128 @@ import org.openqa.selenium.support.PageFactory;
 public class SignupPage {
     final WebDriver driver;
 
-    private final String baseUrl = "https://automationexercise.com/signup";
+    private static final String BASE_URL = "https://automationexercise.com/signup";
     @FindBy(xpath = "//h2/b[text()='Enter Account Information']")
     WebElement accountInformationForm;
     @FindBy(xpath = "//*[@id='id_gender1']")
-    WebElement genderMrCheckBox;
+    private static WebElement genderMrCheckBox;
     @FindBy(xpath = "//*[@id='password']")
-    WebElement passwdInputField;
-    @FindBy(xpath = "//*[@id='uniform-days']")
-    WebElement daysDDlist;
-    @FindBy(xpath = "//*[@id='days']/option[11]")
-    WebElement dayValue;
-    @FindBy(xpath = "//*[@id='uniform-months']")
-    WebElement monthsDDlist;
-    @FindBy(xpath = "//*[@id='months']/option[6]")
-    WebElement monthValue;
-    @FindBy(xpath = "//*[@id='years']")
-    WebElement yearsDDlist;
-    @FindBy(xpath = "//*[@id='years']/option[68]")
-    WebElement yearValue;
+    private static WebElement passwdInputField;
+    @FindBy(id = "days" )
+    private static WebElement dayOfBirth;
+    @FindBy(id = "months")
+    private static WebElement monthOfBirth;
+    @FindBy(id = "years")
+    private static WebElement yearOfBirth;
+
+//    @FindBy(xpath = "//*[@id='uniform-days']")
+//    WebElement daysDDlist;
+//    @FindBy(xpath = "//*[@id='days']/option[11]")
+//    WebElement dayValue;
+//    @FindBy(xpath = "//*[@id='uniform-months']")
+//    WebElement monthsDDlist;
+//    @FindBy(xpath = "//*[@id='months']/option[6]")
+//    WebElement monthValue;
+//    @FindBy(xpath = "//*[@id='years']")
+//    WebElement yearsDDlist;
+//    @FindBy(xpath = "//*[@id='years']/option[68]")
+//    WebElement yearValue;
     @FindBy(xpath = "//*[@id='newsletter']")
-    WebElement newsletterCheckBox;
+    private static WebElement newsletterCheckBox;
     @FindBy(xpath = "//*[@id='optin']")
-    WebElement offerCheckBox;
+    private static WebElement offerCheckBox;
     @FindBy(xpath = "//*[@id='first_name']")
-    WebElement first_nameInputField;
-    @FindBy(xpath = "//*[@id='last_name']")
+    private static WebElement first_nameInputField;
+    private static @FindBy(xpath = "//*[@id='last_name']")
     WebElement last_nameInputField;
     @FindBy(xpath = "//*[@id='address1']")
-    WebElement address1InputField;
+    private static WebElement address1InputField;
+    @FindBy(id = "country")
+    WebElement counrtyInputField;
     @FindBy(xpath = "//*[@id='country']")
-    WebElement countryDDlist;
-    @FindBy(xpath = "//*[@id='country']/option[2]")
+    private static WebElement countryDDlist;
+    private static @FindBy(xpath = "//*[@id='country']/option[2]")
     WebElement countryValue;
-    @FindBy(xpath = "//*[@data-qa='state']")
+    private static @FindBy(xpath = "//*[@data-qa='state']")
     WebElement stateInputField;
-    @FindBy(xpath = "//*[@id='city']")
+    private static @FindBy(xpath = "//*[@id='city']")
     WebElement citiInputField;
-    @FindBy(xpath = "//*[@id='zipcode']")
+    private static @FindBy(xpath = "//*[@id='zipcode']")
     WebElement zipcodeInputField;
-    @FindBy(xpath = "//*[@id='mobile_number']")
+    private static @FindBy(xpath = "//*[@id='mobile_number']")
     WebElement phoneInputField;
-    @FindBy(xpath = "//*[@data-qa='create-account']")
-    WebElement createAccButton;
-    @FindBy(xpath = "//*[@data-qa='name'")
+    private static @FindBy(xpath = "//*[@data-qa='create-account']")
+    WebElement createAccountButton;
+    private static @FindBy(xpath = "//*[@data-qa='name'")
     WebElement userName;
+
+
 
     public SignupPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    public boolean accountInformatinFormIsPresent(){
-       return accountInformationForm.isDisplayed();
-    }
-    public void titleSelect() {
-        genderMrCheckBox.click();
+    public WebElement getGenderMrCheckBox() {
+        return genderMrCheckBox;
     }
 
-    public void passwdInput(String password) {
-        passwdInputField.sendKeys(password);
+    public  WebElement getPasswdInputField() {
+        return passwdInputField;
+    }
+    public WebElement getDayOfBirth() {
+        return dayOfBirth;
+    }
+    public WebElement getMonthsOfBirth() {
+        return monthOfBirth;
+    }
+    public WebElement getYearOfBirth() {
+        return yearOfBirth;
+    }
+    public WebElement getNewsletterCheckBox() {
+        return newsletterCheckBox;
     }
 
-    public void daySelect() {
-        daysDDlist.click();
-        dayValue.click();
-
+    public WebElement getOfferCheckBox() {
+        return offerCheckBox;
+    }
+    public WebElement getFirst_nameInputField() {
+        return first_nameInputField;
     }
 
-    public void monthSelect() {
-        monthsDDlist.click();
-        monthValue.click();
+    public WebElement getLast_nameInputField() {
+        return last_nameInputField;
     }
 
-    public void yearSelect() {
-        yearsDDlist.click();
-        yearValue.click();
+    public WebElement getAddress1InputField() {
+        return address1InputField;
     }
 
-    public void newsletterClick() {
-        newsletterCheckBox.click();
+    public  WebElement getCounrtyInputField() {
+        return counrtyInputField ;
     }
 
-    public void offerClick() {
-        offerCheckBox.click();
+    public WebElement getStateInputField() {
+        return stateInputField;
     }
 
-    public void first_nameInput(String firstName) {
-        first_nameInputField.sendKeys(firstName);
+    public WebElement getCitiInputField() {
+        return citiInputField;
     }
 
-    public void last_nameInput(String lastName) {
-        last_nameInputField.sendKeys(lastName);
+    public WebElement getZipcodeInputField() {
+        return zipcodeInputField;
     }
 
-    public void addressInput(String address) {
-        address1InputField.sendKeys(address);
+    public WebElement getPhoneInputField() {
+        return phoneInputField;
     }
 
-    public void countrySelect(String country) {
-        countryDDlist.click();
-        countryValue.click();
-    }
-
-    public void stateInput(String state) {
-        stateInputField.sendKeys(state);
-    }
-
-    public void cityInput(String city) {
-        citiInputField.sendKeys(city);
-    }
-
-    public void zipcodeInput(Integer zipcode) {
-        zipcodeInputField.sendKeys(Integer.toString(zipcode));
-    }
-
-    public void phoneInput(String phone) {
-        phoneInputField.sendKeys(phone);
-    }
-
-    public void createAccButtonClick() {
-
-        createAccButton.submit();
+    public WebElement getCreateAccountButton() {
+        return createAccountButton;
     }
 
     public String getBaseUrl(){
-        return baseUrl;
+        return BASE_URL;
     }
 
 }

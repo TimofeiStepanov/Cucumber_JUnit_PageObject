@@ -9,72 +9,59 @@ import org.openqa.selenium.support.PageFactory;
 public class LoginPage {
 
     final WebDriver driver;
-    private final String baseUrl = "https://automationexercise.com/login";
-    private final String name = "John";
+    private static final String BASE_URL = "https://automationexercise.com/login";
+
 
     @FindBy(className = "signup-form")
-    WebElement signupForm;
+    private static WebElement signupForm;
     @FindBy(xpath = "//*[@data-qa='signup-name']")
-    WebElement nameInputSignupField;
+    private static WebElement nameInputSignupField;
 
     @FindBy(xpath = "//*[@data-qa='signup-email']")
-    WebElement emailSignupInputField;
+    private static WebElement emailSignupInputField;
 
     @FindBy(xpath = "//*[@data-qa='signup-button']")
-    WebElement signupButton;
+    private static WebElement signupButton;
     @FindBy(xpath = "//*[@data-qa='login-email']")
-    WebElement emailLoginInputField;
+    private static WebElement emailLoginInputField;
     @FindBy(xpath = "//*[@data-qa='login-password']")
-    WebElement passwdLLoginInputField;
+
+    private static WebElement passwdLoginInputField;
     @FindBy(xpath = "//*[@data-qa='login-button']")
-    WebElement loginButton;
+    private static WebElement loginButton;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-    public boolean nameSignupInputFieldDisplayed(){
-        return nameInputSignupField.isDisplayed();
+
+    public WebElement getSignupForm() {
+        return signupForm;
     }
-    public void nameInput(String name) {
-        nameInputSignupField.click();
-        nameInputSignupField.sendKeys(name);
+    public WebElement getNameInputSignupField() {
+        return nameInputSignupField;
+    }
+    public WebElement getEmailSignupInputField() {
+        return emailSignupInputField;
+    }
+    public WebElement getSignupButton() {
+        return signupButton;
+    }
+    public WebElement getEmailLoginInputField() {
+        return emailLoginInputField;
+    }
+    public WebElement getPasswdLoginInputField() {
+        return passwdLoginInputField;
+    }
+    public WebElement getLoginButton() {
+        return loginButton;
     }
 
-    public String inputNameGet() {
-        return nameInputSignupField.getText();
+
+
+
+    public String getBASE_URL() {
+        return BASE_URL;
     }
 
-    public void emailInputSignupForm(String email) {
-        emailSignupInputField.click();
-        emailSignupInputField.sendKeys(email);
-    }
-
-    public void PasswdLLoginInputField(String password) {
-        passwdLLoginInputField.click();
-        passwdLLoginInputField.sendKeys(password);
-    }
-
-    public void signupButtonClick() {
-        signupButton.submit();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void emailLoginInputField(String email) {
-        emailLoginInputField.click();
-        emailLoginInputField.sendKeys(email);
-    }
-
-    public void loginButtonSubmit(){
-        loginButton.submit();
-    }
-
-    public String getBaseUrl() {
-        return baseUrl;
-    }
-    public boolean signupFormDisplayed(){
-        return signupForm.isDisplayed();
-    }
 }

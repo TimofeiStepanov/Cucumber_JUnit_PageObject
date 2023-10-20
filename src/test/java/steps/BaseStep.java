@@ -1,4 +1,4 @@
-package tests;
+package steps;
 
 import org.example.managers.WebDriverSetup;
 import org.example.pages.*;
@@ -8,13 +8,26 @@ public class BaseStep {
 
         private static final WebDriver driver = WebDriverSetup.initializeDriver();
 
+
+
+
         HomePage homePage = new HomePage(driver);
+
+
         NavigationBar navigationBar = new NavigationBar(driver);
         LoginPage loginPage = new LoginPage(driver);
         SignupPage signupPage = new SignupPage(driver);
         CreateAccountMessage createAccountMessage = new CreateAccountMessage(driver);
         DeleteAccountMessage deleteAccountMessage = new DeleteAccountMessage(driver);
-        public static WebDriver getDriver(){
+
+
+
+        private static final String BASE_URL = "https://automationexercise.com/";
+
+        public String getBASE_URL(){
+                return BASE_URL;
+        }
+        public WebDriver getDriver(){
                 return driver;
         }
 
