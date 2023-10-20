@@ -63,9 +63,7 @@ public class LoginPage {
         emailLoginInputField.sendKeys(email);
     }
 
-    public void loginButtonSubmit(){
-        loginButton.submit();
-    }
+
 
     public String getBASE_URL() {
         return BASE_URL;
