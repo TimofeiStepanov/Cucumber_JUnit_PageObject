@@ -7,22 +7,21 @@ import org.openqa.selenium.support.PageFactory;
 
 public class NavigationBar {
     WebDriver driver;
-    //    private final String baseUrl = "https://automationexercise.com/delete_account";
-    //PAGE LOCATORS
+
     @FindBy(xpath = "//li/a[text()=' Home']")
     private static WebElement homeLink;
     @FindBy(xpath = "//*[@href='/login']")
     private static WebElement loginLink;
     @FindBy(xpath = "//*[@href='/logout']")
-    WebElement logoutButtonLink;
+    private static WebElement logoutLink;
     @FindBy(xpath = "//*[@href='/delete_account']")
-    WebElement deleteAccountLink;
-    @FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[5]/a")
-    WebElement loggedText;
-    @FindBy(xpath = "//*[@id='header']/div/div/div/div[2]/div/ul/li[10]/a/b")
-    WebElement loggedName;
-    @FindBy(xpath = "//li/a[text()=' Logged in as ']")
+    private static WebElement deleteAccountLink;
+    @FindBy(xpath = "//li/a[text() = ' Logged in as ']/b")
+    private static WebElement loggedName;
+    @FindBy(xpath = "//li/a[text() = ' Logged in as ']")
     private static WebElement loggedLink;
+
+
     public NavigationBar(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -38,34 +37,23 @@ public class NavigationBar {
         return loggedLink;
     }
 
-    //PAGE ACTIONS
-    public boolean loginButtonDisplayed() {
-        return loginLink.isDisplayed();
+    public WebElement getLoggedName() {
+        return loggedName;
     }
 
-    public void clickLogin() {
-
-        loginLink.click();
+    public WebElement getLogoutLink() {
+        return logoutLink;
     }
-
-    public String loggedNameGet() {
-        return loggedName.getText();
-    }
-
-    public void deleteAccount() {
-        deleteAccountLink.click();
+    public WebElement getDeleteAccountLink() {
+        return deleteAccountLink;
     }
 
 
-    public void logoutClick() {
-        logoutButtonLink.click();
-    }
 
-    public void deleteAccountClick() {
-        deleteAccountLink.click();
-        String url = driver.getCurrentUrl();
-        if (url.equals("https://automationexercise.com/#google_vignette")) {
-            driver.get("https://automationexercise.com/delete_account");
-        }
-    }
+
+
+
+
+
+
 }

@@ -42,7 +42,7 @@ public class LoginPageSteps extends BaseStep {
         return loginPage.getNameInputSignupField().getAttribute("value");
     }
 
-    public void inputEmail(String email) {
+    public void inputSignupEmail(String email) {
         loginPage.getEmailSignupInputField().click();
         loginPage.getEmailSignupInputField().sendKeys(email);
     }
@@ -63,5 +63,13 @@ public class LoginPageSteps extends BaseStep {
     public void signupButtonClick() {
         loginPage.getSignupButton().click();
     }
-
+    public void inputLoginEmail(String email) {
+        loginPage.getEmailLoginInputField().sendKeys(email);
+    }
+    public void inputLoginPassword(String password) {
+        loginPage.getPasswdLoginInputField().sendKeys(password);
+    }
+    public void loginButtonClick() {
+        loginPage.getLoginButton().click();
+    }
 }

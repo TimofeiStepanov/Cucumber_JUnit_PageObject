@@ -19,26 +19,26 @@ Feature: Automation smoke tests to account management functionality
 	  | NickName | E-mail          | FirstName | LastName | Password    | DateOfBirth        | Address          | Country         | State   | City     | Zipcode | Phone         |
 	  | "John"   | "Wick@mail.com" | "John"    | "Wick"   | "qasxdsewr" | "13.November.1977" | "Any street 5-6" | "United States" | "Texas" | "Dallas" | 13245   | "+1324542542" |
 
-#  Scenario:John LOGOUT from shop
-#    When John is logged
-#    And John press Logout
-#    Then John move to LoginPage
-#    And John not logged
-#
-#  Scenario Outline: John LOGIN to shop
-#    Given John on HomePage
-#    And John not logged
-#    When John press Signup/Login
-#    And John put <E-mail> and <Password> in Login form
-#    Then John back to HomePage
-#    And John is logged
-#    Examples:
-#      | E-mail          | Password    |
-#      | "Wick@mail.com" | "qasxdsewr" |
-#
-#  Scenario: John DELETE Account
-#    When John is logged
-#    And Press DeleteAccount
-#    And Confirm Account Deleted message
-#    Then John back to HomePage
-#    And John not logged
+  Scenario:John LOGOUT from shop
+    When John is logged
+    And John press Logout
+    Then John move to LoginPage
+    And John not logged
+
+  Scenario Outline: John LOGIN to shop
+    Given John on HomePage
+    And John not logged
+    When John press Signup/Login
+    And John put <E-mail> and <Password> in Login form
+    Then John back to HomePage
+    And John is logged
+    Examples:
+      | E-mail          | Password    |
+      | "Wick@mail.com" | "qasxdsewr" |
+
+  Scenario: John DELETE Account
+    When John is logged
+    And Press DeleteAccount
+    And Confirm Account Deleted message
+    Then John back to HomePage
+    And John not logged

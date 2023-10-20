@@ -21,11 +21,26 @@ public class NavigationBarSteps extends BaseStep {
         }
     }
 
-    public void SignupLoginLinkClick() {
-        navigationBar.getLoginLink().click();
+    public String loggedName() {
+        return navigationBar.getLoggedName().getText();
     }
 
-
+    public void signupLoginLinkClick() {
+        navigationBar.getLoginLink().click();
+    }
+    public void logoutLinkClick() {
+        navigationBar.getLogoutLink().click();
+    }
+    public String signupLoginLinkColor() {
+        return navigationBar.getLoginLink().getAttribute("style");
+    }
+    public void deleteAccountLinkClick() {
+        navigationBar.getDeleteAccountLink().click();
+        String url = getDriver().getCurrentUrl();
+        if (url.equals("https://automationexercise.com/#google_vignette")) {
+            getDriver().get("https://automationexercise.com/delete_account");
+        }
+    }
 
 
 }

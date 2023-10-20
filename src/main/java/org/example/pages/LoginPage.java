@@ -23,21 +23,23 @@ public class LoginPage {
     @FindBy(xpath = "//*[@data-qa='signup-button']")
     private static WebElement signupButton;
     @FindBy(xpath = "//*[@data-qa='login-email']")
-    WebElement emailLoginInputField;
+    private static WebElement emailLoginInputField;
     @FindBy(xpath = "//*[@data-qa='login-password']")
-    WebElement passwdLLoginInputField;
+
+    private static WebElement passwdLoginInputField;
     @FindBy(xpath = "//*[@data-qa='login-button']")
-    WebElement loginButton;
+    private static WebElement loginButton;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
+
     public WebElement getSignupForm() {
         return signupForm;
     }
     public WebElement getNameInputSignupField() {
         return nameInputSignupField;
-
     }
     public WebElement getEmailSignupInputField() {
         return emailSignupInputField;
@@ -45,23 +47,16 @@ public class LoginPage {
     public WebElement getSignupButton() {
         return signupButton;
     }
-
-
-
-
-    public void PasswdLLoginInputField(String password) {
-        passwdLLoginInputField.click();
-        passwdLLoginInputField.sendKeys(password);
+    public WebElement getEmailLoginInputField() {
+        return emailLoginInputField;
+    }
+    public WebElement getPasswdLoginInputField() {
+        return passwdLoginInputField;
+    }
+    public WebElement getLoginButton() {
+        return loginButton;
     }
 
-
-
-
-
-    public void emailLoginInputField(String email) {
-        emailLoginInputField.click();
-        emailLoginInputField.sendKeys(email);
-    }
 
 
 

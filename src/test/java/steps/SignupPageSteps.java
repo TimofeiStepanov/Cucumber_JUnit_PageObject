@@ -77,5 +77,7 @@ public class SignupPageSteps extends BaseStep{
         signupPage.getPhoneInputField().sendKeys(phone);
     }
 
-
+    public void createAccountButtonClick() {
+        signupPage.getCreateAccountButton().submit();
+    }
 }

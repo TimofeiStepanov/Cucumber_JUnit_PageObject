@@ -10,14 +10,6 @@ import org.junit.jupiter.api.Assumptions;
 
 public class StepsDefinitions extends BaseStep {
 
-    CreateAccountSteps createAccountSteps = new CreateAccountSteps();
-    DeleteAccountSteps deleteAccountSteps = new DeleteAccountSteps();
-    LogoutSteps logoutSteps = new LogoutSteps();
-    LoginSteps loginSteps = new LoginSteps();
-
-
-    //New Steps init
-
     HomePageSteps homePageSteps = new HomePageSteps();
     NavigationBarSteps navigationBarSteps = new NavigationBarSteps();
     LoginPageSteps loginPageSteps = new LoginPageSteps();
@@ -57,7 +49,7 @@ public class StepsDefinitions extends BaseStep {
     @When("John press Signup\\/Login")
     public void johnPressSignupLogin() {
 
-        navigationBarSteps.SignupLoginLinkClick();
+        navigationBarSteps.signupLoginLinkClick();
 //        Assertions.assertEquals(loginPage.getBASE_URL(), getDriver().getCurrentUrl(),
 //               "Login page not upload" );
 //        Assumptions.assumeTrue(createAccountSteps.signupFormIsDisplayed(),
@@ -71,9 +63,10 @@ public class StepsDefinitions extends BaseStep {
     }
 
     @When("John put NickName {string} and E-mail {string} in Signup form")
-    public void johnPutNickNameAndEmailInSignupForm(String nickName, String email) {
+    public void johnPutNickNameAndEmailInSignupForm(String nickName,
+                                                    String email) {
         loginPageSteps.inputNickName(nickName);
-        loginPageSteps.inputEmail(email);
+        loginPageSteps.inputSignupEmail(email);
 
 //        Assertions.assertEquals(nickName,createAccountSteps.inputtedName(),
 //                "Name not correct or field is empty");
@@ -86,8 +79,11 @@ public class StepsDefinitions extends BaseStep {
     }
 
 
-    @When("John put required data in ACCOUNT INFORMATION form: Password {string} ,Date of Birth {string}.")
-    public void johnPutRequiredDataInACCOUNTINFORMATIONForm(String password, String dateOfBirth) {
+    @When("John put required data in ACCOUNT INFORMATION form: " +
+            "Password {string} ," +
+            "Date of Birth {string}.")
+    public void johnPutRequiredDataInACCOUNTINFORMATIONForm(String password,
+                                                            String dateOfBirth) {
 
 
         signupPageSteps.mrRadioButtonSelect();
@@ -127,21 +123,29 @@ public class StepsDefinitions extends BaseStep {
         signupPageSteps.cityInput(city);
         signupPageSteps.zipcodeInput(zipcode);
         signupPageSteps.phoneInput(phone);
-//        signupPage.getCreateAccountButton().click();
-//        createAccountSteps.createAccountMessageTest();
-//        createAccountSteps.confirmButtonAccountCreatedMessageTest();
+        signupPageSteps.createAccountButtonClick();
+
+        Assertions.assertEquals("ACCOUNT CREATED!",createAccountMessageSteps.accountCreatedMessage(),
+                "ACCOUNT CREATED! message not found");
+
+        createAccountMessageSteps.accCreateConfirm();
     }
 
 
     @Then("John back to HomePage")
     public void johnBackToHomePage() {
-        createAccountSteps.returnToHomePageTest();
+        Assertions.assertEquals(getBASE_URL(),getDriver().getCurrentUrl(),  "HomePage not upload");
+        Assertions.assertEquals("color: orange;",navigationBarSteps.HomeLincColor(),
+                "Home link not highlighted in color");
     }
 
 
     @Then("John is logged")
     public void johnIsLogged() {
-        createAccountSteps.loggedNameInNavBarTest();
+        Assumptions.assumeTrue(navigationBarSteps.loggedLinkIsDisplayed(),
+                "'Logged in as' link not displayed ");
+        Assertions.assertEquals("John",navigationBarSteps.loggedName(),
+                "Name not correct or not displayed");
     }
 
     // END OF REGISTRATION
@@ -151,13 +155,16 @@ public class StepsDefinitions extends BaseStep {
 
     @When("John press Logout")
     public void johnPressLogout() {
-        logoutSteps.logoutLinkInNavBarTest();
+        navigationBarSteps.logoutLinkClick();
     }
 
 
     @When("John move to LoginPage")
     public void johnMoveToLoginPage() {
-//        createAccountSteps.loginPageUploadTest();
+        Assertions.assertEquals(loginPage.getBASE_URL(),getDriver().getCurrentUrl(),
+                "Signup / Login page not upload");
+        Assertions.assertEquals( "color: orange;",navigationBarSteps.signupLoginLinkColor(),
+                "'Signup / Login link not highlighted in color" );
     }
     //END LOGOUT
 
@@ -165,10 +172,11 @@ public class StepsDefinitions extends BaseStep {
 
 
     @When("John put {string} and {string} in Login form")
-    public void johnPutAndInLoginForm(String email, String password) {
-        loginSteps.emailInputLoginFormTest(email);
-        loginSteps.passwdInputLoginFormTest(password);
-//        loginSteps.loginButtonTest();
+    public void johnPutAndInLoginForm(String email,
+                                      String password) {
+        loginPageSteps.inputLoginEmail(email);
+        loginPageSteps.inputLoginPassword(password);
+        loginPageSteps.loginButtonClick();
     }
     //END LOGIN
 
@@ -177,14 +185,17 @@ public class StepsDefinitions extends BaseStep {
 
     @When("Press DeleteAccount")
     public void pressDeleteAccount() {
-        deleteAccountSteps.deleteAccountNavBarLinkTest();
+        navigationBarSteps.deleteAccountLinkClick();
     }
 
 
     @When("Confirm Account Deleted message")
     public void confirmAccountDeletedMessage() {
-        deleteAccountSteps.deleteAccountMessageTest();
+        Assertions.assertEquals("ACCOUNT DELETED!",deleteAccountMessageSteps.accountDeletedMessage(),
+                "ACCOUNT DELETED! message not displayed");
+        deleteAccountMessageSteps.deleteAccountConfirm();
     }
+
     //END DELETE
 
 //    END OF FEATURE
