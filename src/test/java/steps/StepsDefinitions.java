@@ -2,6 +2,7 @@ package steps;
 
 
 import io.cucumber.java.AfterAll;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -196,6 +197,145 @@ public class StepsDefinitions extends BaseStep {
                 "ACCOUNT DELETED! message not displayed");
         deleteAccountMessageSteps.deleteAccountConfirm();
     }
+
+
+    @Given("Signup form is displayed")
+    public void signupFormIsDisplayed() {
+    }
+
+    @When("John see message <Message>")
+    public void johnSeeMessageMessage() {
+    }
+
+    @And("See Name input field in Signup form")
+    public void seeNameInputFieldInSignupForm() {
+    }
+
+    @And("See Email Address input field in Signup form")
+    public void seeEmailAddressInputFieldInSignupForm() {
+    }
+
+    @And("See Signup Button")
+    public void seeSignupButton() {
+    }
+
+    @Then("John can fill out the signup form.")
+    public void johnCanFillOutTheSignupForm() {
+    }
+
+    @When("John put NickName <Nick Name>")
+    public void johnPutNickNameNickName() {
+    }
+
+    @And("E-mail <E-mail> in Signup form")
+    public void eMailEMailInSignupForm() {
+    }
+
+    @And("press Signup button")
+    public void pressSignupButton() {
+    }
+
+    @Then("John move to Signup page")
+    public void johnMoveToSignupPage() {
+    }
+
+    @Then("John see Massage <Message>")
+    public void johnSeeMassageMessage() {
+    }
+
+    @Given("Information Form is Displayed.")
+    public void informatonFormIsDisplayed() {
+    }
+
+    @Then("Field for required data is displayed")
+    public void fieldForRequiredDataIsDisplayed() {
+    }
+
+    @When("John See ENTER ACCOUNT INFORMATION title")
+    public void johnSeeENTERACCOUNTINFORMATIONTitle() {
+    }
+
+    @When("John can See ADDRESS INFORMATION titile")
+    public void johnCanSeeADDRESSINFORMATIONTitile() {
+    }
+
+    @When("Mr. and Mrs radio button is displayed")
+    public void mrAndMrsRadioButtonIsDisplayed() {
+    }
+
+    @And("Check Box  Sign up for our newsletter! is displayed")
+    public void checkBoxSignUpForOurNewsletterIsDisplayed() {
+    }
+
+    @And("Check Box Receive special offers from our partners!")
+    public void checkBoxReceiveSpecialOffersFromOurPartners() {
+    }
+
+    @And("Company field is displayed")
+    public void companyFieldIsDisplayed() {
+    }
+
+    @And("Button Create Account is displayed")
+    public void buttonCreateAccountIsDisplayed() {
+    }
+
+    @Then("John can fill Account Information Form")
+    public void johnCanFillAccountInformationForm() {
+    }
+
+    @When("John select Mr. radio button")
+    public void johnSelectMrRadioButton() {
+    }
+
+    @And("Name field is filled automatikal Name <Nick Name>")
+    public void nameFieldIsFilledAutomatikalNameNickName() {
+    }
+
+    @And("Email field is filled automatikal E-mail <E-mail>")
+    public void emailFieldIsFilledAutomatikalEMailEMail() {
+    }
+
+    @When("John input Password <Password>")
+    public void johnInputPasswordPassword() {
+    }
+
+    @Then("Password hidden under asterisks < Passwd displayed >")
+    public void passwordHiddenUnderAsterisksPasswdDisplayed() {
+    }
+
+    @Given("Day field active")
+    public void dayFieldActive() {
+    }
+
+    @When("John enter Number{int} <Num{int}> and Number{int} <Num{int}>")
+    public void johnEnterNumberNumAndNumberNum(int arg0, int arg1, int arg2, int arg3) {
+    }
+
+    @Then("Day of Birth equal test Number<Test Num>")
+    public void dayOfBirthEqualTestNumberTestNum() {
+    }
+
+    @Given("Day field active{int}")
+    public void dayFieldActive(int arg0) {
+    }
+
+    @When("John enter Number{int} <Num{int}>, Number{int} <Num{int}> and Number{int}<Num{int}>")
+    public void johnEnterNumberNumNumberNumAndNumberNum(int arg0, int arg1, int arg2, int arg3, int arg4, int arg5) {
+    }
+
+    @Then("Day of Birth equal <Test Number>")
+    public void dayOfBirthEqualTestNumber() {
+    }
+
+    @When("John click on Day")
+    public void johnClickOnDay() {
+    }
+
+    @Then("John select Day in Drop Down list")
+    public void johnSelectDayInDropDownList() {
+    }
+
+
 
     //END DELETE
 
