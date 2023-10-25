@@ -2,6 +2,7 @@ package steps;
 
 
 import io.cucumber.java.AfterAll;
+import io.cucumber.java.BeforeAll;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Assumptions;
 
 public class StepsDefinitions extends BaseStep {
 
+
     HomePageSteps homePageSteps = new HomePageSteps();
     NavigationBarSteps navigationBarSteps = new NavigationBarSteps();
     LoginPageSteps loginPageSteps = new LoginPageSteps();
@@ -20,10 +22,11 @@ public class StepsDefinitions extends BaseStep {
     DeleteAccountMessageSteps deleteAccountMessageSteps = new DeleteAccountMessageSteps();
 
 
-    @AfterAll
-    public static void closeDriver(){
-        getDriver().quit();
-    }
+
+//    @AfterAll
+//    public static void closeDriver(){
+//        getDriver().quit();
+//    }
 
     //START FEATURE
 
@@ -255,8 +258,8 @@ public class StepsDefinitions extends BaseStep {
     public void johnSeeENTERACCOUNTINFORMATIONTitle() {
     }
 
-    @When("John can See ADDRESS INFORMATION titile")
-    public void johnCanSeeADDRESSINFORMATIONTitile() {
+    @When("John can See ADDRESS INFORMATION title")
+    public void johnCanSeeADDRESSINFORMATIONTitle() {
     }
 
     @When("Mr. and Mrs radio button is displayed")

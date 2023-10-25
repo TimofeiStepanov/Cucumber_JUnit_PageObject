@@ -6,25 +6,28 @@ Feature: Automation e2e tests to account management functionality
   I want to be able logout from my account
   I want to be able delete my account
 
+  @Old
   Scenario Outline: John REGISTERING in shop like new user
 	Given John on HomePage
 	And   John not logged
 	When John press Signup/Login
 	And John put NickName <NickName> and E-mail <E-mail> in Signup form
-	And John put required data in ACCOUNT INFORMATION form: Password <Password> ,DateOfBirth
-	And John put required data in ADDRESS INFORMATION form: <First name>, <Last name>, <Address>,  <Country>, <State>, <City>, <Zipcode>,<Phone>
+	And John put required data in ACCOUNT INFORMATION form: Password <Password> ,Date of Birth <DateOfBirth>.
+	And John put required data in ADDRESS INFORMATION form: First Name <FirstName>, Last name <LastName>, Address <Address>, Country <Country>, State <State>, City <City>, Zipcode <Zipcode>, Phone <Phone>.
 	Then John back to HomePage
 	And John is logged
 	Examples:
-	  | NickName | E-mail          | First name | Last name | Password    | DateOfBirth | Address          | Country         | State   | City     | Zipcode | Phone         |
-	  | "John"   | "Wick@mail.com" | "John"     | "Wick"    | "qasxdsewr" | ""          | "Any street 5-6" | "United States" | "Texas" | "Dallas" | 13245   | "+1324542542" |
+	  | NickName | E-mail          | FirstName | LastName | Password    | DateOfBirth        | Address          | Country         | State   | City     | Zipcode | Phone         |
+	  | "John"   | "Wick@mail.com" | "John"    | "Wick"   | "qasxdsewr" | "13.November.1977" | "Any street 5-6" | "United States" | "Texas" | "Dallas" | 13245   | "+1324542542" |
 
+  @Old
   Scenario:John LOGOUT from shop
 	When John is logged
 	And John press Logout
 	Then John move to LoginPage
 	And John not logged
 
+  @Old
   Scenario Outline: John LOGIN to shop
 	Given John on HomePage
 	And John not logged
@@ -36,6 +39,7 @@ Feature: Automation e2e tests to account management functionality
 	  | E-mail          | Password    |
 	  | "Wick@mail.com" | "qasxdsewr" |
 
+  @Old
   Scenario: John DELETE Account
 	When John is logged
 	And Press DeleteAccount

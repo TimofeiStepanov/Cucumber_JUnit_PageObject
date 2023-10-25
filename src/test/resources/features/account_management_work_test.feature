@@ -71,7 +71,7 @@ Feature: Account management tests
   Scenario: John can see correct Information data form
 
 	When John See ENTER ACCOUNT INFORMATION title
-	When John can See ADDRESS INFORMATION titile
+	When John can See ADDRESS INFORMATION title
 	When Mr. and Mrs radio button is displayed
 	When Field for required data is displayed
 	And Check Box  Sign up for our newsletter! is displayed
@@ -85,17 +85,16 @@ Feature: Account management tests
 
 	And John put required data in ACCOUNT INFORMATION form: Password <Password> ,Date of Birth <DateOfBirth>.
 	And John put required data in ADDRESS INFORMATION form: First Name <FirstName>, Last name <LastName>, Address <Address>, Country <Country>, State <State>, City <City>, Zipcode <Zipcode>, Phone <Phone>.
-#	Then John back to HomePage
 	And John is logged
 	Examples:
 	  | FirstName | LastName | Password    | DateOfBirth        | Address          | Country         | State   | City     | Zipcode | Phone         |
 	  | "John"    | "Wick"   | "qasxdsewr" | "13.November.1977" | "Any street 5-6" | "United States" | "Texas" | "Dallas" | 13245   | "+1324542542" |
 
-  @E2E
+  @E2E @Functional
   Scenario: John select gender prefix
 	When John select Mr. radio button
 
-  @E2E
+  @E2E @Functional
   Scenario Outline: John see that Name and Email is filled
 	And Name field is filled automatikal Name <Nick Name>
 	And Email field is filled automatikal E-mail <E-mail>
@@ -138,6 +137,31 @@ Feature: Account management tests
 	When John click on Day
 	Then John select Day in Drop Down list
 
+  @E2E @Functional
+  Scenario Outline: John input Month of Birth with keyboard
+	When Month fild is active
+	Then John input Month value <Month>
+	And Mounth displayed like <Test Month>
+	Examples:
+	  | Month      | Test Month |
+	  | "N"        | "November" |
+	  | "No"       | "November" |
+	  | "Nov"      | "November" |
+	  | "Nove"     | "November" |
+	  | "Novem"    | "November" |
+	  | "Novemb"   | "November" |
+	  | "Novembe"  | "November" |
+	  | "November" | "November" |
+
+  @E2E @Functional
+	Scenario: John select check boxes
+	Then Check Box Receive special offers from our partners! is enable
+	Then Check Box  Sign up for our newsletter! is enable
+
+
+
+
+
 
   @Functional
   Scenario:John LOGOUT from shop
@@ -147,25 +171,11 @@ Feature: Account management tests
 	And John not logged
 
 
-  @Quick
-  Scenario:John LOGOUT from shop
-	When John press Logout
-	Then John not logged
 
 
-  @Smoke
-  Scenario:John LOGOUT from shop
-	Given John is logged
-	And John press Logout
-	And John not logged
 
-  @Quick
-  Scenario Outline: John LOGIN to shop
-	And John put <E-mail> and <Password> in Login form
-	And John is logged
-	Examples:
-	  | E-mail          | Password    |
-	  | "Wick@mail.com" | "qasxdsewr" |
+
+
 
   @Smoke
   Scenario Outline: John LOGIN to shop
