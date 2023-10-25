@@ -9,6 +9,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
+import org.openqa.selenium.WebDriver;
 
 
 public class StepsDefinitions extends BaseStep {
@@ -21,12 +22,15 @@ public class StepsDefinitions extends BaseStep {
     CreateAccountMessageSteps createAccountMessageSteps = new CreateAccountMessageSteps();
     DeleteAccountMessageSteps deleteAccountMessageSteps = new DeleteAccountMessageSteps();
 
+    @BeforeAll
+    public static void openDriver() {
+        getDriver();
+    }
 
-
-//    @AfterAll
-//    public static void closeDriver(){
-//        getDriver().quit();
-//    }
+    @AfterAll
+    public static void closeDriver(){
+        getDriver().quit();
+    }
 
     //START FEATURE
 

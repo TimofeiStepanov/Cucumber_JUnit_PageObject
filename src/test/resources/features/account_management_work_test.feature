@@ -9,7 +9,7 @@ Feature: Account management tests
 
 #  Rule: John REGISTERING in shop like new user.
 
-  @Smoke @Quick @Functional @E2E @Negative @Positive
+  @Functional @E2E @Negative @Positive
   Scenario: John move to Signup / Login page.
 	Given John on HomePage
 	And   John not logged
@@ -29,12 +29,6 @@ Feature: Account management tests
 	  | Message          |
 	  | New User Signup! |
 
-  @Smoke @Quick
-  Scenario Outline: John filling the signup form.
-	Then John put NickName <Nick Name> and E-mail <E-mail> in Signup form
-	Examples:
-	  | Nick Name | E-mail          |
-	  | "John"    | "Wick@mail.com" |
 
   @Functional @E2E @Positive
   Scenario Outline: John filling the signup form.
@@ -62,14 +56,10 @@ Feature: Account management tests
 	  | "John"   | ""              | ""      |
 	  | ""       | ""              | ""      |
 
-  @Smoke
-  Scenario: John can see Information Form
-	Given Information Form is Displayed.
-	Then Field for required data is displayed
 
   @E2E
   Scenario: John can see correct Information data form
-
+	Given Information Form is Displayed.
 	When John See ENTER ACCOUNT INFORMATION title
 	When John can See ADDRESS INFORMATION title
 	When Mr. and Mrs radio button is displayed
@@ -79,16 +69,6 @@ Feature: Account management tests
 	And Company field is displayed
 	And Button Create Account is displayed
 	Then John can fill Account Information Form
-
-  @Smoke @Quick
-  Scenario Outline: John filling required data in Information Form
-
-	And John put required data in ACCOUNT INFORMATION form: Password <Password> ,Date of Birth <DateOfBirth>.
-	And John put required data in ADDRESS INFORMATION form: First Name <FirstName>, Last name <LastName>, Address <Address>, Country <Country>, State <State>, City <City>, Zipcode <Zipcode>, Phone <Phone>.
-	And John is logged
-	Examples:
-	  | FirstName | LastName | Password    | DateOfBirth        | Address          | Country         | State   | City     | Zipcode | Phone         |
-	  | "John"    | "Wick"   | "qasxdsewr" | "13.November.1977" | "Any street 5-6" | "United States" | "Texas" | "Dallas" | 13245   | "+1324542542" |
 
   @E2E @Functional
   Scenario: John select gender prefix
@@ -153,13 +133,83 @@ Feature: Account management tests
 	  | "Novembe"  | "November" |
 	  | "November" | "November" |
 
+
   @E2E @Functional
-	Scenario: John select check boxes
+  Scenario: John input Month Of Birth with mouth
+	When John click on Month
+	Then John select Month in Drop Down list
+
+  @E2E @Functional
+  Scenario Outline: Scenario Outline: John input Year of Birth with keyboard
+	When Year fild is active
+	Then John input Year <Thousands> <Hundreds> <Dozens> <Units>
+	And Year displayed like <Test Year>
+	Examples:
+	  | Thousands | Hundreds | Dozens | Units | Test Year |
+	  | "1"       | "9"      | "7"    | "7"   | "1977"    |
+
+  @E2E @Functional
+  Scenario: John input Year Of Birth with mouth
+	When John click on Year
+	Then John select Year in Drop Down list
+
+  @E2E @Functional
+  Scenario: John select check boxes
 	Then Check Box Receive special offers from our partners! is enable
 	Then Check Box  Sign up for our newsletter! is enable
 
+  @E2E @Functional @Negative
+  Scenario Outline: John filling required data in Address Information Form
+	When John put required data in ADDRESS INFORMATION form: First Name <FirstName>
+	And John put required data in ADDRESS INFORMATION form: Last name <LastName>
+	And John put required data in ADDRESS INFORMATION form: Address <Address>
+	And John put required data in ADDRESS INFORMATION form: Country <Country>
+	And John put required data in ADDRESS INFORMATION form: State <State>
+	And John put required data in ADDRESS INFORMATION form: City <City>
+	And John put required data in ADDRESS INFORMATION form: Zipcode <Zipcode>
+	And John put required data in ADDRESS INFORMATION form: Phone <Phone>
+	Then John see message <Message> Some required field is empty
+	Examples:
+	  | FirstName | LastName | Address          | Country         | State   | City     | Zipcode | Phone         | Message |
+	  | ""        | "Wick"   | "Any street 5-6" | "United States" | "Texas" | "Dallas" | 13245   | "+1324542542" | ""      |
+	  | "John"    | ""       | "Any street 5-6" | "United States" | "Texas" | "Dallas" | 13245   | "+1324542542" | ""      |
+	  | "John"    | "Wick"   | ""               | "United States" | "Texas" | "Dallas" | 13245   | "+1324542542" | ""      |
+	  | "John"    | "Wick"   | "Any street 5-6" | ""              | "Texas" | "Dallas" | 13245   | "+1324542542" | ""      |
+	  | "John"    | "Wick"   | "Any street 5-6" | "United States" | ""      | "Dallas" | 13245   | "+1324542542" | ""      |
+	  | "John"    | "Wick"   | "Any street 5-6" | "United States" | "Texas" | ""       | 13245   | "+1324542542" | ""      |
+	  | "John"    | "Wick"   | "Any street 5-6" | "United States" | "Texas" | "Dallas" |         | "+1324542542" | ""      |
+	  | "John"    | "Wick"   | "Any street 5-6" | "United States" | "Texas" | "Dallas" | 13245   | ""            | ""      |
 
+  @E2E @Functional @Positive
+  Scenario Outline: John filling required data in Address Information Form
+	When John put required data in ADDRESS INFORMATION form: First Name <FirstName>
+	And John put required data in ADDRESS INFORMATION form: Last name <LastName>
+	And John put required data in ADDRESS INFORMATION form: Address <Address>
+	And John put required data in ADDRESS INFORMATION form: Country <Country>
+	And John put required data in ADDRESS INFORMATION form: State <State>
+	And John put required data in ADDRESS INFORMATION form: City <City>
+	And John put required data in ADDRESS INFORMATION form: Zipcode <Zipcode>
+	And John put required data in ADDRESS INFORMATION form: Phone <Phone>
+	Then John can finish Create Account
+	Examples:
+	  | FirstName | LastName | Address          | Country         | State   | City     | Zipcode | Phone         |
+	  | "John"    | "Wick"   | "Any street 5-6" | "United States" | "Texas" | "Dallas" | 13245   | "+1324542542" |
 
+  @E2E @Positive
+  Scenario Outline: John see his info filed correct
+	When Check required data in ADDRESS INFORMATION form: First Name <FirstName>
+	And Check required data in ADDRESS INFORMATION form: Last name <LastName>
+	And Check required data in ADDRESS INFORMATION form: Address <Address>
+	And Check required data in ADDRESS INFORMATION form: Country <Country>
+	And Check required data in ADDRESS INFORMATION form: State <State>
+	And Check required data in ADDRESS INFORMATION form: City <City>
+	And Check required data in ADDRESS INFORMATION form: Zipcode <Zipcode>
+	And Check required data in ADDRESS INFORMATION form: Phone <Phone>
+	Then John can finish Create Account
+
+	Examples:
+	  | FirstName | LastName | Address          | Country         | State   | City     | Zipcode | Phone         |
+	  | "John"    | "Wick"   | "Any street 5-6" | "United States" | "Texas" | "Dallas" | 13245   | "+1324542542" |
 
 
 
@@ -170,14 +220,7 @@ Feature: Account management tests
 	Then John move to LoginPage
 	And John not logged
 
-
-
-
-
-
-
-
-  @Smoke
+  @E2E @Functional
   Scenario Outline: John LOGIN to shop
 	Given John on HomePage
 	And John not logged
@@ -189,13 +232,13 @@ Feature: Account management tests
 	  | E-mail          | Password    |
 	  | "Wick@mail.com" | "qasxdsewr" |
 
-  @Quick
+
   Scenario: John DELETE Account
 	And Press DeleteAccount
 	And Confirm Account Deleted message
 	Then John not logged
 
-  @Smoke
+
   Scenario: John DELETE Account
 	When John is logged
 	And Press DeleteAccount

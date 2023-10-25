@@ -28,6 +28,7 @@
         <gherkin.version>26.2.0</gherkin.version>
         <cluecumber-maven.version>3.4.0</cluecumber-maven.version>
         <httpclient5.version>5.2.1</httpclient5.version>
+<!--        <cucumber.filter.tags>${cucumber.filter.tags}</cucumber.filter.tags>-->
     </properties>
 
     <dependencies>
@@ -172,6 +173,9 @@
 
     </dependencies>
 
+
+
+
     <build>
         <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
@@ -193,6 +197,7 @@
                     <includes>
                         <include>**/*Tests.java</include>
                     </includes>
+
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                         -Dcucumber.options="--plugin io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"

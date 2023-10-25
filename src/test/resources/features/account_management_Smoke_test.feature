@@ -23,7 +23,7 @@ Feature: Account management Smoke tests
 	  | "John"    | "Wick@mail.com" |
 
   @Smoke
-  Scenario Outline: John can see Information Form
+  Scenario Outline: John finish REGISTRATION in shop
 	When Information Form is Displayed.
 	And Field for required data is displayed
 	And John put required data in ACCOUNT INFORMATION form: Password <Password> ,Date of Birth <DateOfBirth>.
