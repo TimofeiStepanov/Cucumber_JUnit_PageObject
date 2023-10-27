@@ -2,7 +2,7 @@ package steps;
 
 import org.openqa.selenium.NoSuchElementException;
 
-public class LoginPageSteps extends BaseStep {
+public class StepsOnLoginPage extends BaseStep {
     public Boolean signupFormIsDisplayed() throws NoSuchElementException {
         try {
             return loginPage.getSignupForm().isDisplayed();

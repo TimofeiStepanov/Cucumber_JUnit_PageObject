@@ -1,6 +1,6 @@
 package steps;
 
-public class HomePageSteps extends BaseStep{
+public class StepsOnHomePage extends BaseStep{
     public void navigateToHomePage() {
 
 

@@ -9,18 +9,17 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
-import org.openqa.selenium.WebDriver;
 
 
 public class StepsDefinitions extends BaseStep {
 
 
-    HomePageSteps homePageSteps = new HomePageSteps();
-    NavigationBarSteps navigationBarSteps = new NavigationBarSteps();
-    LoginPageSteps loginPageSteps = new LoginPageSteps();
-    SignupPageSteps signupPageSteps = new SignupPageSteps();
-    CreateAccountMessageSteps createAccountMessageSteps = new CreateAccountMessageSteps();
-    DeleteAccountMessageSteps deleteAccountMessageSteps = new DeleteAccountMessageSteps();
+    StepsOnHomePage stepsOnHomePage = new StepsOnHomePage();
+    StepsOnNavigationBar stepsOnNavigationBar = new StepsOnNavigationBar();
+    StepsOnLoginPage stepsOnLoginPage = new StepsOnLoginPage();
+    StepsOnSignupPage stepsOnSignupPage = new StepsOnSignupPage();
+    StepsOnCreateAccountMessagePage stepsOnCreateAccountMessagePage = new StepsOnCreateAccountMessagePage();
+    StepsOnDeleteAccountMessagePage stepsOnDeleteAccountMessagePage = new StepsOnDeleteAccountMessagePage();
 
     @BeforeAll
     public static void openDriver() {
@@ -39,26 +38,26 @@ public class StepsDefinitions extends BaseStep {
 
     @Given("John on HomePage")
     public void johnOnHomePage() {
-        homePageSteps.navigateToHomePage();
+        stepsOnHomePage.navigateToHomePage();
 
         Assertions.assertEquals(getBASE_URL(),getDriver().getCurrentUrl(),  "HomePage not upload");
-        Assertions.assertEquals("color: orange;",navigationBarSteps.HomeLincColor(),
+        Assertions.assertEquals("color: orange;", stepsOnNavigationBar.HomeLincColor(),
                 "Home link not highlighted in color");
     }
 
 
     @Given("John not logged")
     public void johnNotLogged() {
-        Assumptions.assumeTrue(navigationBarSteps.loginLinkIsDisplayed(),
+        Assumptions.assumeTrue(stepsOnNavigationBar.loginLinkIsDisplayed(),
                 "Login/Signup link not displayed");
-        Assumptions.assumeFalse(navigationBarSteps.loggedLinkIsDisplayed(), "Logged link is Displayed");
+        Assumptions.assumeFalse(stepsOnNavigationBar.loggedLinkIsDisplayed(), "Logged link is Displayed");
 
     }
 
     @When("John press Signup\\/Login")
     public void johnPressSignupLogin() {
 
-        navigationBarSteps.signupLoginLinkClick();
+        stepsOnNavigationBar.signupLoginLinkClick();
 //        Assertions.assertEquals(loginPage.getBASE_URL(), getDriver().getCurrentUrl(),
 //               "Login page not upload" );
 //        Assumptions.assumeTrue(createAccountSteps.signupFormIsDisplayed(),
@@ -74,15 +73,15 @@ public class StepsDefinitions extends BaseStep {
     @When("John put NickName {string} and E-mail {string} in Signup form")
     public void johnPutNickNameAndEmailInSignupForm(String nickName,
                                                     String email) {
-        loginPageSteps.inputNickName(nickName);
-        loginPageSteps.inputSignupEmail(email);
+        stepsOnLoginPage.inputNickName(nickName);
+        stepsOnLoginPage.inputSignupEmail(email);
 
 //        Assertions.assertEquals(nickName,createAccountSteps.inputtedName(),
 //                "Name not correct or field is empty");
 //        Assertions.assertEquals(email,createAccountSteps.inputtedEmail(),
 //                "Email not correct or field is empty");
 
-        loginPageSteps.signupButtonClick();
+        stepsOnLoginPage.signupButtonClick();
 
 //        Assertions.assertEquals(signupPage.getBaseUrl(), getDriver().getCurrentUrl());
     }
@@ -95,13 +94,13 @@ public class StepsDefinitions extends BaseStep {
                                                             String dateOfBirth) {
 
 
-        signupPageSteps.mrRadioButtonSelect();
-        signupPageSteps.passwordInput(password);
-        signupPageSteps.dayOfBirthSelect(dateOfBirth);
-        signupPageSteps.monthOfBirthSelect(dateOfBirth);
-        signupPageSteps.yearOfBirthSelect(dateOfBirth);
-        signupPageSteps.checkBoxSignUpForOurNewsletterComfirm();
-        signupPageSteps.checkBoxReceiveSpecialOffersFromOurPartnersConfirm();
+        stepsOnSignupPage.mrRadioButtonSelect();
+        stepsOnSignupPage.passwordInput(password);
+        stepsOnSignupPage.dayOfBirthSelect(dateOfBirth);
+        stepsOnSignupPage.monthOfBirthSelect(dateOfBirth);
+        stepsOnSignupPage.yearOfBirthSelect(dateOfBirth);
+        stepsOnSignupPage.checkBoxSignUpForOurNewsletterComfirm();
+        stepsOnSignupPage.checkBoxReceiveSpecialOffersFromOurPartnersConfirm();
 
     }
 
@@ -124,36 +123,36 @@ public class StepsDefinitions extends BaseStep {
                                                             Integer zipcode,
                                                             String phone) {
 
-        signupPageSteps.firstNameInput(firstName);
-        signupPageSteps.lastNameInput(lastName);
-        signupPageSteps.addressInput(address);
-        signupPageSteps.countrySelect(country);
-        signupPageSteps.stateInput(state);
-        signupPageSteps.cityInput(city);
-        signupPageSteps.zipcodeInput(zipcode);
-        signupPageSteps.phoneInput(phone);
-        signupPageSteps.createAccountButtonClick();
+        stepsOnSignupPage.firstNameInput(firstName);
+        stepsOnSignupPage.lastNameInput(lastName);
+        stepsOnSignupPage.addressInput(address);
+        stepsOnSignupPage.countrySelect(country);
+        stepsOnSignupPage.stateInput(state);
+        stepsOnSignupPage.cityInput(city);
+        stepsOnSignupPage.zipcodeInput(zipcode);
+        stepsOnSignupPage.phoneInput(phone);
+        stepsOnSignupPage.createAccountButtonClick();
 
-        Assertions.assertEquals("ACCOUNT CREATED!",createAccountMessageSteps.accountCreatedMessage(),
+        Assertions.assertEquals("ACCOUNT CREATED!", stepsOnCreateAccountMessagePage.accountCreatedMessage(),
                 "ACCOUNT CREATED! message not found");
 
-        createAccountMessageSteps.accCreateConfirm();
+        stepsOnCreateAccountMessagePage.accCreateConfirm();
     }
 
 
     @Then("John back to HomePage")
     public void johnBackToHomePage() {
         Assertions.assertEquals(getBASE_URL(),getDriver().getCurrentUrl(),  "HomePage not upload");
-        Assertions.assertEquals("color: orange;",navigationBarSteps.HomeLincColor(),
+        Assertions.assertEquals("color: orange;", stepsOnNavigationBar.HomeLincColor(),
                 "Home link not highlighted in color");
     }
 
 
     @Then("John is logged")
     public void johnIsLogged() {
-        Assumptions.assumeTrue(navigationBarSteps.loggedLinkIsDisplayed(),
+        Assumptions.assumeTrue(stepsOnNavigationBar.loggedLinkIsDisplayed(),
                 "'Logged in as' link not displayed ");
-        Assertions.assertEquals("John",navigationBarSteps.loggedName(),
+        Assertions.assertEquals("John", stepsOnNavigationBar.loggedName(),
                 "Name not correct or not displayed");
     }
 
@@ -164,7 +163,7 @@ public class StepsDefinitions extends BaseStep {
 
     @When("John press Logout")
     public void johnPressLogout() {
-        navigationBarSteps.logoutLinkClick();
+        stepsOnNavigationBar.logoutLinkClick();
     }
 
 
@@ -172,7 +171,7 @@ public class StepsDefinitions extends BaseStep {
     public void johnMoveToLoginPage() {
         Assertions.assertEquals(loginPage.getBASE_URL(),getDriver().getCurrentUrl(),
                 "Signup / Login page not upload");
-        Assertions.assertEquals( "color: orange;",navigationBarSteps.signupLoginLinkColor(),
+        Assertions.assertEquals( "color: orange;", stepsOnNavigationBar.signupLoginLinkColor(),
                 "'Signup / Login link not highlighted in color" );
     }
     //END LOGOUT
@@ -183,9 +182,9 @@ public class StepsDefinitions extends BaseStep {
     @When("John put {string} and {string} in Login form")
     public void johnPutAndInLoginForm(String email,
                                       String password) {
-        loginPageSteps.inputLoginEmail(email);
-        loginPageSteps.inputLoginPassword(password);
-        loginPageSteps.loginButtonClick();
+        stepsOnLoginPage.inputLoginEmail(email);
+        stepsOnLoginPage.inputLoginPassword(password);
+        stepsOnLoginPage.loginButtonClick();
     }
     //END LOGIN
 
@@ -194,15 +193,15 @@ public class StepsDefinitions extends BaseStep {
 
     @When("Press DeleteAccount")
     public void pressDeleteAccount() {
-        navigationBarSteps.deleteAccountLinkClick();
+        stepsOnNavigationBar.deleteAccountLinkClick();
     }
 
 
     @When("Confirm Account Deleted message")
     public void confirmAccountDeletedMessage() {
-        Assertions.assertEquals("ACCOUNT DELETED!",deleteAccountMessageSteps.accountDeletedMessage(),
+        Assertions.assertEquals("ACCOUNT DELETED!", stepsOnDeleteAccountMessagePage.accountDeletedMessage(),
                 "ACCOUNT DELETED! message not displayed");
-        deleteAccountMessageSteps.deleteAccountConfirm();
+        stepsOnDeleteAccountMessagePage.deleteAccountConfirm();
     }
 
 
@@ -312,10 +311,6 @@ public class StepsDefinitions extends BaseStep {
 
     @Given("Day field active")
     public void dayFieldActive() {
-    }
-
-    @When("John enter Number{int} <Num{int}> and Number{int} <Num{int}>")
-    public void johnEnterNumberNumAndNumberNum(int arg0, int arg1, int arg2, int arg3) {
     }
 
     @Then("Day of Birth equal test Number<Test Num>")

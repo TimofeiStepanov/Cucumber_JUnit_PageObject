@@ -1,6 +1,6 @@
 package steps;
 
-public class DeleteAccountMessageSteps extends BaseStep {
+public class StepsOnDeleteAccountMessagePage extends BaseStep {
 
     public void deleteAccountConfirm() {
         deleteAccountMessage.getContinueButton().click();

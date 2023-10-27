@@ -8,13 +8,13 @@ import org.openqa.selenium.support.PageFactory;
 public class NavigationBar {
     WebDriver driver;
 
-    @FindBy(xpath = "//li/a[text()=' Home']")
+    @FindBy(xpath = "//li/a[text() = ' Home']")
     private static WebElement homeLink;
-    @FindBy(xpath = "//*[@href='/login']")
+    @FindBy(xpath = "//*[@href = '/login']")
     private static WebElement loginLink;
-    @FindBy(xpath = "//*[@href='/logout']")
+    @FindBy(xpath = "//*[@href = '/logout']")
     private static WebElement logoutLink;
-    @FindBy(xpath = "//*[@href='/delete_account']")
+    @FindBy(xpath = "//*[@href = '/delete_account']")
     private static WebElement deleteAccountLink;
     @FindBy(xpath = "//li/a[text() = ' Logged in as ']/b")
     private static WebElement loggedName;

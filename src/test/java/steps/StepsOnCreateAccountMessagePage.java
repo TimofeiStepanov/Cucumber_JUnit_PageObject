@@ -1,6 +1,6 @@
 package steps;
 
-public class CreateAccountMessageSteps extends BaseStep{
+public class StepsOnCreateAccountMessagePage extends BaseStep{
 
     public String accountCreatedMessage() {
         return createAccountMessage.getAccountCreateH2Text().getText();

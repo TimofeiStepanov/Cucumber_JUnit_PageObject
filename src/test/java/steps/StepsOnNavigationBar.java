@@ -2,7 +2,7 @@ package steps;
 
 import org.openqa.selenium.NoSuchElementException;
 
-public class NavigationBarSteps extends BaseStep {
+public class StepsOnNavigationBar extends BaseStep {
 
     public String HomeLincColor() {
         return navigationBar.getHomeLink().getAttribute("style");

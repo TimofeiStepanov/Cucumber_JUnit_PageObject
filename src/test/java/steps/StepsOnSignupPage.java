@@ -1,6 +1,6 @@
 package steps;
 
-public class SignupPageSteps extends BaseStep{
+public class StepsOnSignupPage extends BaseStep{
 
     public void mrRadioButtonSelect() {
         signupPage.getGenderMrCheckBox().click();

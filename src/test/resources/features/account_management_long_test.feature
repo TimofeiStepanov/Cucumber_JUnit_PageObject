@@ -70,11 +70,11 @@ Feature: Account management tests
 	And Button Create Account is displayed
 	Then John can fill Account Information Form
 
-  @E2E @Functional
+  @E2E @Functional @Negative @Positive
   Scenario: John select gender prefix
 	When John select Mr. radio button
 
-  @E2E @Functional
+  @E2E @Functional @Positive
   Scenario Outline: John see that Name and Email is filled
 	And Name field is filled automatikal Name <Nick Name>
 	And Email field is filled automatikal E-mail <E-mail>
@@ -82,7 +82,7 @@ Feature: Account management tests
 	  | Nick Name | E-mail          |
 	  | "John"    | "Wick@mail.com" |
 
-  @E2E @Functional
+  @E2E @Functional @Positive
   Scenario: John input Password
 	When John input Password <Password>
 	Then Password hidden under asterisks < Passwd displayed >
@@ -104,7 +104,7 @@ Feature: Account management tests
 
   @E2E @Functional @Negative
   Scenario Outline: John input Day Of Birth with Keyboard
-	Given Day field active13
+	Given Day field active
 	When John enter Number1 <Num1>, Number2 <Num2> and Number3<Num3>
 	Then Day of Birth equal <Test Number>
 	Examples:
