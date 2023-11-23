@@ -12,7 +12,8 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
         features = "src/test/resources/features",
         glue = {"/steps"},
         plugin = {"html:cucumber-html-report/cucumber-report.html", "json:cucumber-json-report/cucumber.json", "pretty"},
-        snippets = CAMELCASE
+        snippets = CAMELCASE,
+        tags="@Smoke"
 )
 public class StartTests {
 

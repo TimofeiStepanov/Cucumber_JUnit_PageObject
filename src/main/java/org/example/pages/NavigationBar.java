@@ -5,8 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class NavigationBar {
-    WebDriver driver;
+public class NavigationBar extends BasePage{
 
     @FindBy(xpath = "//li/a[text() = ' Home']")
     private static WebElement homeLink;
@@ -21,11 +20,10 @@ public class NavigationBar {
     @FindBy(xpath = "//li/a[text() = ' Logged in as ']")
     private static WebElement loggedLink;
 
-
     public NavigationBar(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
+
 
     public WebElement getHomeLink() {
         return homeLink;

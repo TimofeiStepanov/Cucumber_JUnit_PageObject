@@ -1,5 +1,5 @@
 Feature: Automation e2e tests to account management functionality
-  scenarios on 'http://automationexercise.com'
+
   As a user John
   I want to be able create an account on site
   I want to be able login to my account

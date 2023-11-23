@@ -5,8 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SignupPage {
-    final WebDriver driver;
+public class SignupPage extends BasePage{
+
 
     private static final String BASE_URL = "https://automationexercise.com/signup";
     @FindBy(xpath = "//h2/b[text()='Enter Account Information']")
@@ -63,12 +63,11 @@ public class SignupPage {
     private static @FindBy(xpath = "//*[@data-qa='name'")
     WebElement userName;
 
-
-
     public SignupPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
+
+
     public WebElement getGenderMrCheckBox() {
         return genderMrCheckBox;
     }

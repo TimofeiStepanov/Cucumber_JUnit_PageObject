@@ -8,11 +8,7 @@ public class BaseStep {
 
         private static final WebDriver driver = WebDriverSetup.initializeDriver();
 
-
-
-
 //        HomePage homePage = new HomePage(driver);
-
 
         NavigationBar navigationBar = new NavigationBar(driver);
         LoginPage loginPage = new LoginPage(driver);
@@ -27,7 +23,7 @@ public class BaseStep {
         public String getBASE_URL(){
                 return BASE_URL;
         }
-        public static WebDriver getDriver(){
+        protected static WebDriver getDriver(){
                 return driver;
         }
 
